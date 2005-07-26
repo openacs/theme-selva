@@ -314,6 +314,7 @@ if { $make_navbar_p } {
     set extra_spaces "<img src=\"/resources/dotlrn/spacer.gif\" border=0 width=15>"    
     #set subnavbar [selva::portal_navbar]
     if {$in_dotlrn_p == 1} {
+	set navbar "<ul>"
 	set navbar [selva::portal_navbar \
 			-user_id $user_id \
 			-link_control_panel $link_control_panel \
@@ -322,6 +323,13 @@ if { $make_navbar_p } {
 			-post_html $extra_spaces \
 			-link_all $link_all
 		   ]
+	if {[exists_and_not_null navbar_list]} {
+	    append navbar "<li> --- </li>"
+	    foreach navbar_item $navbar_list {
+		append navbar "<li><a href=\"[lindex $navbar_item 0]\">[lindex $navbar_item 1]</a></li>"
+	    }
+	}
+	append navbar "</ul>"
     } else {
 	set navbar ""
 	if {[exists_and_not_null navbar_list]} {
@@ -338,11 +346,26 @@ if { $make_navbar_p } {
     if {[exists_and_not_null community_id]} {
 	append subnavbar "<li><a href=\"\"><b>[dotlrn_community::get_community_name $community_id]</b></a></li>"
     } 
+    set untrusted_user_id [ad_conn untrusted_user_id]
+    if { $untrusted_user_id != 0 } {
+	set logout_url [ad_get_logout_url]
+    } else {
+	set login_url [ad_get_login_url -return]
+    }
+
     append subnavbar "	<li><a href=\"/dotlrn/\">My Workspace</a></li>
     <li><a href=\"/contacts\">Contacts</a></li>
 	<li><a href=\"/pvt/home\">Preferences</a></li>
 	<li><a href=\"/dotlrn/control-panel\">Control Panel</a></li>
-</ul>"
+"
+
+    set system_name [ad_system_name]
+    if {[exists_and_not_null logout_url]} {
+        append subnavbar "<li><a href=\"$logout_url\" title=\"#acs-subsite.Logout_from_system#\">#acs-subsite.Logout#</a></li>"
+    } else {
+        append subnavbar "<li><a href=\"$login_url\" title=\"#acs-subsite.Log_in_to_system#\">#acs-subsite.Log_In#</a></li>"
+    }
+    append subnavbar "</ul>"
     
 } else {
     set navbar " "
