@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Content and DefaultMaster</TITLE>
+<META NAME="description" CONTENT="Content and DefaultMaster">
+<META NAME="keywords" CONTENT="doc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="doc.css">
+
+<LINK REL="next" HREF="node3.html">
+<LINK REL="previous" HREF="node1.html">
+<LINK REL="up" HREF="node1.html">
+<LINK REL="next" HREF="node3.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html34"
+  HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html32"
+  HREF="node1.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html26"
+  HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html35"
+  HREF="node3.html">The easy part :</A>
+<B> Up:</B> <A NAME="tex2html33"
+  HREF="node1.html">How does this work</A>
+<B> Previous:</B> <A NAME="tex2html27"
+  HREF="node1.html">How does this work</A>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00011000000000000000">
+Content and DefaultMaster</A>
+</H2>
+
+<P>
+Every application generates only a few part of the page, I will call it "content" to make the difference with the "header" (not to be confused with html "header" and html "body". Both header and content I will talk about are part of the "body" section of the html page).
+	<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="473" HEIGHT="418" ALIGN="BOTTOM" BORDER="0"
+ SRC="./myspace.png"
+ ALT="Image myspace">
+
+</DIV>
+
+<P>
+From here there are already 2 things to distinguish : the general layout of the page (nearly CSS based) and the look of the elements of the content part, which are a "theme" (I will come back later on this).
+
+<P>
+When you enter a URL in your browser, what basically happens is : 
+
+<UL>
+<LI>the called application will be executed and will generate a short html code (content), then pass it to the DefaultMaster
+</LI>
+<LI>the DefaultMaster will generate  all the header information (html header, body tags, and actually all the menus and information displayed above and below the content), and will then insert inside what it has received from the application.
+</LI>
+<LI>the complete html page generated is sent to the browser for display
+</LI>
+</UL>
+
+<P>
+To specify the place where the code will be inserted in the DefaultMaster, the <SPAN CLASS="MATH"><IMG
+ WIDTH="16" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$&lt;$"></SPAN>slave<SPAN CLASS="MATH"><IMG
+ WIDTH="16" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$&gt;$"></SPAN> command is used. That notion of  <SPAN CLASS="MATH"><IMG
+ WIDTH="16" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$&lt;$"></SPAN>master<SPAN CLASS="MATH"><IMG
+ WIDTH="16" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$&gt;$"></SPAN> and  <SPAN CLASS="MATH"><IMG
+ WIDTH="16" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$&lt;$"></SPAN>slave<SPAN CLASS="MATH"><IMG
+ WIDTH="16" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$&gt;$"></SPAN> is really important in the .LRN / OpenACS context : a bunch of code calls its master, and the master insert the code received at the place of the  <SPAN CLASS="MATH"><IMG
+ WIDTH="16" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$&lt;$"></SPAN>slave<SPAN CLASS="MATH"><IMG
+ WIDTH="16" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$&gt;$"></SPAN> command.
+
+<P>
+To simplify, here is how we could see the schematics generation of the page shown below :
+	<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="473" HEIGHT="207" ALIGN="BOTTOM" BORDER="0"
+ SRC="./DefaultMaster.png"
+ ALT="Image DefaultMaster">
+
+</DIV>
+
+<P>
+The DefaultMaster is a parameter you can change in "parameters" for "Main Site" in the site-map page.
+Its value is stored in the database in the table "apm_parameter_values" at the id of "DefaultMaster" from the table "apm_parameters".
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html34"
+  HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html32"
+  HREF="node1.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html26"
+  HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html35"
+  HREF="node3.html">The easy part :</A>
+<B> Up:</B> <A NAME="tex2html33"
+  HREF="node1.html">How does this work</A>
+<B> Previous:</B> <A NAME="tex2html27"
+  HREF="node1.html">How does this work</A></DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Jeremy Monnet
+2005-07-18
+</ADDRESS>
+</BODY>
+</HTML>
