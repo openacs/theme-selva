@@ -19,7 +19,7 @@
 </div>
       </if>
       <div id="portal">
-<h3 align="center">@title;noquote@</h3>
+<if @in_dotlrn_p@ ne 1><h3 align="center">@title;noquote@</h3></if>
 <slave>
 	  <div style="clear: both;"></div>
       </div>
