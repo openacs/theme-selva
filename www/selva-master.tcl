@@ -41,7 +41,6 @@
 # Author: Arjun Sanyal (arjun@openforce.net), yon@openforce.net
 #
 # $Id$
-
 set user_id [ad_get_user_id] 
 set community_id [dotlrn_community::get_community_id]
 set dotlrn_url [dotlrn::get_url]
