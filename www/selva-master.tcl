@@ -352,10 +352,10 @@ if { $make_navbar_p } {
 	set login_url [ad_get_login_url -return]
     }
 
-    append subnavbar "	<li><a href=\"/dotlrn/\">My Workspace</a></li>
-    <li><a href=\"/contacts\">Contacts</a></li>
-	<li><a href=\"/pvt/home\">Preferences</a></li>
-	<li><a href=\"/dotlrn/control-panel\">Control Panel</a></li>
+    append subnavbar "	<li><a href=\"/dotlrn/\">[_ dotlrn.My_Workspace]</a></li>
+    <li><a href=\"/contacts\">[_ contacts.Contacts]</a></li>
+	<li><a href=\"/pvt/home\">[_ dotlrn.Preferences]</a></li>
+	<li><a href=\"/dotlrn/control-panel\">[_ dotlrn.control_panel]</a></li>
 "
 
     set system_name [ad_system_name]
