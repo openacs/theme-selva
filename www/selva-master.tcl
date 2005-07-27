@@ -41,6 +41,7 @@
 # Author: Arjun Sanyal (arjun@openforce.net), yon@openforce.net
 #
 # $Id$
+
 set user_id [ad_get_user_id] 
 set community_id [dotlrn_community::get_community_id]
 set dotlrn_url [dotlrn::get_url]
@@ -48,8 +49,6 @@ set dotlrn_url [dotlrn::get_url]
 # Hack for title and context bar outside of dotlrn
 
 set in_dotlrn_p [expr [string match "[dotlrn::get_url]/*" [ad_conn url]]]
-
-
 
 #Scope Related graphics/css parameters
 # Set everything for user level scope as default then modify it later as we refine the scope.
@@ -312,6 +311,7 @@ if { $make_navbar_p } {
     }
     set extra_spaces "<img src=\"/resources/dotlrn/spacer.gif\" border=0 width=15>"    
     #set subnavbar [selva::portal_navbar]
+
     if {$in_dotlrn_p == 1} {
 	set navbar "<ul>"
 	set navbar [selva::portal_navbar \
@@ -340,31 +340,12 @@ if { $make_navbar_p } {
 	}
     }
 
-    set subnavbar "<ul>"
-
-    if {[exists_and_not_null community_id]} {
-	append subnavbar "<li><a href=\"\"><b>[dotlrn_community::get_community_name $community_id]</b></a></li>"
-    } 
-    set untrusted_user_id [ad_conn untrusted_user_id]
-    if { $untrusted_user_id != 0 } {
-	set logout_url [ad_get_logout_url]
-    } else {
-	set login_url [ad_get_login_url -return]
-    }
-
-    append subnavbar "	<li><a href=\"/dotlrn/\">[_ dotlrn.My_Workspace]</a></li>
-    <li><a href=\"/contacts\">[_ contacts.Contacts]</a></li>
-	<li><a href=\"/pvt/home\">[_ dotlrn.Preferences]</a></li>
-	<li><a href=\"/dotlrn/control-panel\">[_ dotlrn.control_panel]</a></li>
-"
-
-    set system_name [ad_system_name]
-    if {[exists_and_not_null logout_url]} {
-        append subnavbar "<li><a href=\"$logout_url\" title=\"#acs-subsite.Logout_from_system#\">#acs-subsite.Logout#</a></li>"
-    } else {
-        append subnavbar "<li><a href=\"$login_url\" title=\"#acs-subsite.Log_in_to_system#\">#acs-subsite.Log_In#</a></li>"
-    }
-    append subnavbar "</ul>"
+    set subnavbar "<ul>
+	<li><a href=\"/dotlrn/\">My Workspace</a></li>
+	<li><a href=\"/dotlrn/?&page%5fnum=3\">Courses</a></li>
+	<li><a href=\"/pvt/home\">Preferences</a></li>
+	<li><a href=\"/dotlrn/control-panel\">Control Panel</a></li>
+</ul>"
     
 } else {
     set navbar " "
