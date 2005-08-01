@@ -114,7 +114,6 @@ namespace eval selva {
 	#page_num will be empty_string for special pages like
 	#My Space and Control Panel
 	regsub -all {[^0-9]} $page_num {} page_num
-	
 	set navbar "<ul>\n"
 	
 	db_foreach list_page_nums_select {} {
