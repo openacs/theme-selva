@@ -328,6 +328,34 @@ if {![empty_string_p $community_id]} {
     set text ""
 }
 
+
+# Always make the subnavbar appear
+
+set subnavbar "<ul>"
+
+if {[exists_and_not_null community_id]} {
+    append subnavbar "<li><a href=\"\"><b>[dotlrn_community::get_community_name $community_id]</b></a></li>"
+} 
+
+append subnavbar "	<li><a href=\"/dotlrn/\">[_ dotlrn.My_Workspace]</a></li>"
+foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalSubnavbarTabs" -default ""] {
+    append subnavbar "\n<li><a href=\"$url\">$name</a></li>"
+}
+
+append subnavbar "\n<li><a href=\"/dotlrn/control-panel\">[_ dotlrn.control_panel]</a></li>"
+
+set system_name [ad_system_name]
+if {[exists_and_not_null logout_url]} {
+    append subnavbar "\n<li><a href=\"$logout_url\" title=\"#acs-subsite.Logout_from_system#\">#acs-subsite.Logout#</a></li>"
+} else {
+    append subnavbar "\n<li><a href=\"$login_url\" title=\"#acs-subsite.Log_in_to_system#\">#acs-subsite.Log_In#</a></li>"
+}
+if { $sw_admin_p } {
+    append subnavbar "\n<li><a href=\"$admin_url\" title=\"#acs-subsite.Site_wide_administration#\">#acs-subsite.Site_Wide_Admin#</a></li>"
+    append subnavbar "\n<li><a href=\"@locale_admin_url@\">#acs-subsite.Install_locales#</a></li>"
+}
+append subnavbar "</ul>"
+
 if { $make_navbar_p } {
     if {$link_control_panel} {
 	set link_control_panel 1
@@ -363,35 +391,9 @@ if { $make_navbar_p } {
 	    append navbar "</ul>"
 	}
     }
-
-    set subnavbar "<ul>"
-
-    if {[exists_and_not_null community_id]} {
-	append subnavbar "<li><a href=\"\"><b>[dotlrn_community::get_community_name $community_id]</b></a></li>"
-    } 
-
-    append subnavbar "	<li><a href=\"/dotlrn/\">[_ dotlrn.My_Workspace]</a></li>"
-    foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalSubnavbarTabs" -default ""] {
-	append subnavbar "\n<li><a href=\"$url\">$name</a></li>"
-    }
-
-    append subnavbar "\n<li><a href=\"/dotlrn/control-panel\">[_ dotlrn.control_panel]</a></li>"
-
-    set system_name [ad_system_name]
-    if {[exists_and_not_null logout_url]} {
-        append subnavbar "\n<li><a href=\"$logout_url\" title=\"#acs-subsite.Logout_from_system#\">#acs-subsite.Logout#</a></li>"
-    } else {
-        append subnavbar "\n<li><a href=\"$login_url\" title=\"#acs-subsite.Log_in_to_system#\">#acs-subsite.Log_In#</a></li>"
-    }
-    if { $sw_admin_p } {
-	append subnavbar "\n<li><a href=\"$admin_url\" title=\"#acs-subsite.Site_wide_administration#\">#acs-subsite.Site_Wide_Admin#</a></li>"
-	append subnavbar "\n<li><a href=\"@locale_admin_url@\">#acs-subsite.Install_locales#</a></li>"
-    }
-    append subnavbar "</ul>"
     
 } else {
     set navbar " "
-    set subnavbar " "
 }
 
 
