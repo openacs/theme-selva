@@ -4,7 +4,7 @@
 <package key="theme-selva" url="http://openacs.org/repository/apm/packages/theme-selva" type="apm_application">
     <package-name>Selva Theme</package-name>
     <pretty-plural>Selva Themes</pretty-plural>
-    <initial-install-p>t</initial-install-p>
+    <initial-install-p>f</initial-install-p>
     <singleton-p>f</singleton-p>
     <auto-mount>theme</auto-mount>
     
