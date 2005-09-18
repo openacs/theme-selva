@@ -1,1 +1,3 @@
-UPDATE apm_parameter_values SET attr_value = '/packages/theme-selva/www/selva-master' WHERE parameter_id IN (SELECT parameter_id FROM apm_parameters WHERE parameter_name='DefaultMaster' AND package_key = 'acs-subsite');
+UPDATE apm_parameter_values SET attr_value = '/packages/theme-selva/www/selva-master' WHERE parameter_id IN (SELECT parameter_id FROM apm_parameters WHERE parameter_name='DefaultMaster');
+SELECT portal_element_theme__new ('selva','Selva Theme','../../theme-selva/www/themes/selva-theme','../../theme-selva/www/themes/selva-theme');
+UPDATE portals SET theme_id = (SELECT theme_id FROM portal_element_themes WHERE name='selva');

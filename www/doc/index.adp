@@ -3,15 +3,15 @@
 
 <blockquote>
 <h1>Selva for designers</h1>
-
-Selva simplifies the work of customizing the look and feel of your website.
+Selva simplifies the work of customizing the look and feel of your OpenACS/dotLRN website.
 
 <h1>Templates</h1>
 <h2>Not yet using Selva?</h2>
 <ol>
-<li>Go to the <a href="/admin/site-map/">site map page</a></li> 
-<li>go to the parameters link in the 'Main Site" row.</li>
-<li>Change the 'default master' parameter to /www/Selva/selva-master</li>
+<li>Go to the <a href="/acs-admin/apm">Package manager page</a></li> 
+<li>Click in 'install packages'</li>
+<li>The system will check for all uninstalled packages in your local directory. Choose theme-selva.</li>
+<li>Restart the server</li></li>
  </ol>
 
 The following documentation will be useful.
@@ -38,18 +38,31 @@ changed main-navigation for portal navigation class in    /packages/dotlrn/tcl/n
 
 
 <h2>Modifying SelvaFlex theme</h2>
+New themes should be added in the www/resources directory. 
+Each directory should contain all images and a single selva.css file.
 
-<p>To be done by Zen</p>
+<h1>Selva presentation and Quality Assurance</h1>
+In order to improve and maintain the quality of the themes in Selva we would like all 
+'certified' themes to be Accesible W3C Level A compliant and XHTML compliant.
 
-<h1>Selva presentation and QA</h1>
 <h2>Making your page accessible</h2>
-to be done by Dorian
+A comple accessibility analysis was performed on the portal template used in dotlrn 2.1.1.
+You should read "<a href="http://dotlrn.org/conferences/Madrid05/">Towards an Accessible Learning Management System</a> for a full description.
+
+
 <h2>Making your page XHTML compliant</h2>
-To be done by Dorian
+Check out the same document above.
 
 <h1>Credits</h1>
 
-<h2>Adding themes<h2>
+A number of people has collaborated with these themes:
+<ul>
+<li>Art Director + graphic design + CSS: Dorian Peters</li>
+<li>Default Selva theme impelmentation: Jeremy Monet</li>
+<li>Selva Flex implementation: Inigo Medina Garcia</li>
+<li>Documentation and coordination: Rafael Calvo</li>
+</ul>
+
 
 
 

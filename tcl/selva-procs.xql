@@ -3,7 +3,7 @@
 
 <queryset>
 
-    <fullquery name="selva::portal_navbar.list_page_nums_select">
+    <fullquery name="selva::portal_subnavbar.list_page_nums_select">
         <querytext>
             select pretty_name,
                    sort_key

@@ -28,7 +28,33 @@ ad_library {
 
 namespace eval selva {
 
-        ad_proc -public portal_navbar {
+    ad_proc -public portal_navbar {
+	
+    } {
+	A helper procedure that generates the Subnavbar (above the portal navbar, ie the tabs)
+	for dotlrn. It is called from the selva-master template.
+    } {
+	set current_url [ad_conn url]
+	
+	set subnavbar "<ul>"
+	
+	foreach {url name } [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalSubnavbarTabs" -default ""] {
+	    
+	    # if url is /dotlrn or /dotlrn/index we highlight the "Home" tab, otherwise we highlight the tab with the current_url, if there is one, i.e. we are not in a community
+	    if { $url == $current_url || ($url == "/dotlrn/" && $current_url == "/dotlrn/index")} {
+		append subnavbar "\n<li class=\"active\"><a href=\"$url\">"
+		#if {$picture != "null" } { append subnavbar "<img src=\"$picture\" alt=\"$picture\">" }
+		append subnavbar "[_ $name]</a></li>"
+	    } else {
+		append subnavbar "\n<li><a href=\"$url\">[_ $name]</a></li>"
+	    }
+	    
+	}
+	
+	append subnavbar "\n</ul>"
+    }
+
+    ad_proc -public portal_subnavbar {
         {-user_id:required}
         {-link_control_panel:required}
         {-control_panel_text:required}
@@ -114,33 +140,24 @@ namespace eval selva {
 	#page_num will be empty_string for special pages like
 	#My Space and Control Panel
 	regsub -all {[^0-9]} $page_num {} page_num
+	
 	set navbar "<ul>\n"
 	
 	db_foreach list_page_nums_select {} {
-	    if { ("$dotlrn_url/" == [ad_conn url] || "$dotlrn_url/index" == [ad_conn url]) && $sort_key == 0 && $page_num == ""} {
+	    #if { "$dotlrn_url/" == [ad_conn url] || "$dotlrn_url/index" == [ad_conn url]) && $sort_key == 0 && $page_num == ""} {
 		# active tab is  first tab and page_num may be ""
-		append navbar "\n<li class=\"current\"><a href=\"#\">$pretty_name</a></li>"
-	     } elseif {$page_num == $sort_key} {
+		#append navbar "\n<li class=\"current\"><a href=\"#\">$pretty_name</a></li>"
+	     #} elseif {$page_num == $sort_key} {
 		 # We are looking at the active tab
-		 append navbar "\n<li class=\"current\"><a href=\"#\">$pretty_name</a></li>"
-	     } else {
+		# append navbar "\n<li class=\"current\"><a href=\"#\">$pretty_name</a></li>"
+	     #} else {
 		 append navbar "\n<li><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
-	     }
+	     #}
 	 }
 
-        #
-        # Common code for the the behavior of the control panel link (class administration
-        # or my account)
-        #
-
-	 if {$show_control_panel} {
-	     if {$link_control_panel} {
-		 append navbar "<li><a href=\"$control_panel_url\">$control_panel_text</a></li>"
-
-	     } else {
-		 append navbar "<li class=\"current\"><a href=\"#\">$control_panel_text</a></li>"
-	     } 
-	 }
+	if  {[regexp {dotlrn/clubs/*} [ad_conn url]]} { 
+	    append navbar "\n<li><a href=\"one-community-admin\">Admin</a></li>"
+	}
 
 	append navbar "</ul>"
 
