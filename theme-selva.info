@@ -10,7 +10,7 @@
     
     
     
-    <version name="0.5d" url="http://openacs.org/repository/download/apm/theme-selva-0.6d.apm">
+    <version name="0.7d1" url="http://openacs.org/repository/download/apm/theme-selva-0.7d1.apm">
         <owner url="mailto:">JM</owner>
 	<provides url="theme" version="0.6d"/>
         <!-- No dependency information -->
