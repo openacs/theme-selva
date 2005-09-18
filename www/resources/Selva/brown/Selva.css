@@ -27,7 +27,7 @@ body {
 /* contains: logo and tagline (which is a background image) */	
 
 #header {
-	background: #F2F1CB; }
+	background: #F2F1CB url(images/image.png) no-repeat top left; }
 
 /* BREADCRUMBS and STATUS */
 /* contains: breadcrumns, user name, members online, login */
@@ -72,7 +72,8 @@ body {
 	display: inline;
 	list-style: none;
 	background: #999999 url(images/tab_right.gif) no-repeat top right;
-	padding: 10px 10px 5px 0px;
+	padding: 10px 10px 5px 0px !important;
+        padding: 0px 0px 0px 0px;
 	margin:0px;}
 
 	#portal-navigation li a {
@@ -141,6 +142,7 @@ body {
 	padding: 0px 10px 0px 10px ; }
 			
 #portal {
+	border-bottom:0.1px solid #F5F4E4;
 	background: #F5F4E4 url(images/portal_rightShadow.gif) repeat-y top right;
 	padding-top: 10px;
 	padding-left: 15px;
