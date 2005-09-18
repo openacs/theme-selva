@@ -15,17 +15,15 @@ if { ![info exists header_stuff] } {
 if { [template::util::is_nil subnavbar_link] } {
     set subnavbar_link ""
 }
-
-# Where to find the stylesheet
-# original
-#set css_url "/resources/acs-subsite/site-master.css"
-# diferent tries
-#set css_url ""
-set default_css_url "/resources/theme-selva/Selva/default/Selva.css"
-
-
-# there will be a link extracted from the database for the css, but not right now
-set css_url $default_css_url
+ 
+set community_id [dotlrn_community::get_community_id]
+if {[exists_and_not_null community_id]} {
+	set css_url [parameter::get_from_package_key -package_key "theme-selva" -parameter "communityCssUrl" -default "/resources/theme-selva/Selva/green/Selva.css"]
+	
+    } else {
+	set css_url [parameter::get_from_package_key -package_key "theme-selva" -parameter "cssUrl" -default "/resources/theme-selva/Selva/default/Selva.css"]
+	
+    }
 
 # Get system name
 set system_name [ad_system_name]
@@ -107,3 +105,11 @@ set whos_online_url "[subsite::get_element -element url]shared/whos-online"
 #----------------------------------------------------------------------
 
 util_get_user_messages -multirow "user_messages"
+
+# logo or not logo
+set error_messages "bla : "
+ append error_messages [parameter::get_from_package_key -package_key "theme-selva" -parameter "isLogoActivated" -default 0]
+
+if {[parameter::get_from_package_key -package_key "theme-selva" -parameter "isLogoActivated" -default "1"] == 1} {
+	set is_logo_url [parameter::get_from_package_key -package_key "theme-selva" -parameter "logoUrl" -default "/resources/theme-selva/Selva/default/images/logo.gif"]
+}

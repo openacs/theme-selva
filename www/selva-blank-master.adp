@@ -2,11 +2,13 @@
 <html>
   <head>
     <meta name="generator" content="OpenACS version @openacs_version@">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
     <title>@title;noquote@</title>
     <multiple name="header_links">
       <link rel="@header_links.rel@" type="@header_links.type@" href="@header_links.href@" media="@header_links.media@">
     </multiple>
-	<link rel="stylesheet" type="text/css" href="/resources/theme-selva/Selva/default/Selva.css" media="all">
+	
     <if @acs_blank_master__htmlareas@ not nil>
       <script type="text/javascript" src="/resources/acs-templating/htmlarea/htmlarea.js"></script>
       <script type="text/javascript" src="/resources/acs-templating/htmlarea/lang/en.js"></script>

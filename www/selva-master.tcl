@@ -41,13 +41,11 @@
 # Author: Arjun Sanyal (arjun@openforce.net), yon@openforce.net
 #
 # $Id$
+
 set user_id [ad_get_user_id] 
 set community_id [dotlrn_community::get_community_id]
 set dotlrn_url [dotlrn::get_url]
 
-# Hack for title and context bar outside of dotlrn
-
-set in_dotlrn_p [expr [string match "[dotlrn::get_url]/*" [ad_conn url]]]
 
 #Scope Related graphics/css parameters
 # Set everything for user level scope as default then modify it later as we refine the scope.
@@ -167,37 +165,11 @@ if {$have_comm_id_p} {
 }
 
 # Set up some basic stuff
-# Get user information
-set sw_admin_p 0
-set user_id [ad_conn user_id]
-set untrusted_user_id [ad_conn untrusted_user_id]
-if { $untrusted_user_id != 0 } {
-    set user_name [person::name -person_id $untrusted_user_id]
-    set pvt_home_url [ad_pvt_home]
-    set pvt_home_name [_ acs-subsite.Your_Account]
-    set logout_url [ad_get_logout_url]
-
-    # Site-wide admin link
-    set admin_url {}
-
-    set sw_admin_p [acs_user::site_wide_admin_p -user_id $untrusted_user_id]
-
-    if { $sw_admin_p } {
-        set admin_url "/acs-admin/"
-        set locale_admin_url "/acs-lang/admin"
-    } else {
-        set subsite_admin_p [permission::permission_p \
-                                 -object_id [subsite::get_element -element object_id] \
-                                 -privilege admin \
-                                 -party_id $untrusted_user_id]
-
-        if { $subsite_admin_p  } {
-            set admin_url "[subsite::get_element -element url]admin/"
-        }
-    }
-} else {
-    set login_url [ad_get_login_url -return]
+set user_id [ad_get_user_id]
+if { [ad_conn untrusted_user_id] == 0 } {
     set user_name {}
+} else {
+    set user_name [acs_user::get_element -user_id [ad_conn untrusted_user_id] -element name]
 }
 
 if {![exists_and_not_null title]} {
@@ -328,72 +300,33 @@ if {![empty_string_p $community_id]} {
     set text ""
 }
 
-
-# Always make the subnavbar appear
-
-set subnavbar "<ul>"
-
-if {[exists_and_not_null community_id]} {
-    append subnavbar "<li><a href=\"\"><b>[dotlrn_community::get_community_name $community_id]</b></a></li>"
-} 
-
-append subnavbar "	<li><a href=\"/dotlrn/\">[_ dotlrn.My_Workspace]</a></li>"
-foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalSubnavbarTabs" -default ""] {
-    append subnavbar "\n<li><a href=\"$url\">$name</a></li>"
-}
-
-append subnavbar "\n<li><a href=\"/dotlrn/control-panel\">[_ dotlrn.control_panel]</a></li>"
-
-set system_name [ad_system_name]
-if {[exists_and_not_null logout_url]} {
-    append subnavbar "\n<li><a href=\"$logout_url\" title=\"#acs-subsite.Logout_from_system#\">#acs-subsite.Logout#</a></li>"
-} else {
-    append subnavbar "\n<li><a href=\"$login_url\" title=\"#acs-subsite.Log_in_to_system#\">#acs-subsite.Log_In#</a></li>"
-}
-if { $sw_admin_p } {
-    append subnavbar "\n<li><a href=\"$admin_url\" title=\"#acs-subsite.Site_wide_administration#\">#acs-subsite.Site_Wide_Admin#</a></li>"
-    append subnavbar "\n<li><a href=\"@locale_admin_url@\">#acs-subsite.Install_locales#</a></li>"
-}
-append subnavbar "</ul>"
-
 if { $make_navbar_p } {
-    if {$link_control_panel} {
-	set link_control_panel 1
-    } else {
 	set link_control_panel 0
+  
+    
+    if {[exists_and_not_null community_id]} {
+	set youarehere "[dotlrn_community::get_community_name $community_id]"
+    } else {
+	set youarehere "[_ theme-selva.MySpace]"
     }
+
     set extra_spaces "<img src=\"/resources/dotlrn/spacer.gif\" border=0 width=15>"    
     #set subnavbar [selva::portal_navbar]
-    if {$in_dotlrn_p == 1} {
-	set navbar "<ul>"
-	set navbar [selva::portal_navbar \
-			-user_id $user_id \
-			-link_control_panel $link_control_panel \
-			-control_panel_text $control_panel_text \
-			-pre_html "$extra_spaces" \
-			-post_html $extra_spaces \
-			-link_all $link_all
-		   ]
-	if {[exists_and_not_null navbar_list]} {
-	    append navbar "<li> --- </li>"
-	    foreach navbar_item $navbar_list {
-		append navbar "<li><a href=\"[lindex $navbar_item 0]\">[lindex $navbar_item 1]</a></li>"
-	    }
-	}
-	append navbar "</ul>"
-    } else {
-	set navbar ""
-	if {[exists_and_not_null navbar_list]} {
-	    set navbar "<ul>"
-	    foreach navbar_item $navbar_list {
-		append navbar "<li><a href=\"[lindex $navbar_item 0]\">[lindex $navbar_item 1]</a></li>"
-	    }
-	    append navbar "</ul>"
-	}
-    }
+    set subnavbar [selva::portal_subnavbar \
+        -user_id $user_id \
+        -link_control_panel $link_control_panel \
+        -control_panel_text $control_panel_text \
+	-pre_html "$extra_spaces" \
+	-post_html $extra_spaces \
+        -link_all $link_all
+    ]
+
+    
+    set navbar [selva::portal_navbar]
     
 } else {
     set navbar " "
+    set subnavbar " "
 }
 
 
@@ -446,6 +379,10 @@ if {$ds_enabled_p} {
 }
 
 set change_locale_url "/acs-lang/?[export_vars { { package_id "[ad_conn package_id]" } }]"
+
+# Hack for title and context bar outside of dotlrn
+
+set in_dotlrn_p [expr [string match "[dotlrn::get_url]/*" [ad_conn url]]]
 
 if { [info exists context] } {
     set context_bar [eval ad_context_bar $context]
