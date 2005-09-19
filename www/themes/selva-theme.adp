@@ -22,7 +22,12 @@
 
 <div class="portlet-title">
 <span>@name@</span>
-<img src="/resources/theme-selva/Selva/default/images/portlet_shadeClose.gif"><img src="/resources/theme-selva/Selva/default/images/portlet_close.gif">
+<%  
+# does people use shade and destry buttons??? if so maybe these should be turned on 
+# <img src="/resources/theme-selva/Selva/default/images/portlet_shadeClose.gif">
+# <img src="/resources/theme-selva/Selva/default/images/portlet_close.gif"> 
+
+%>
 </div>
         <div class="portlet">
 <slave>
