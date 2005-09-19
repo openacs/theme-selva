@@ -6,7 +6,7 @@
     <pretty-plural>Selva Themes</pretty-plural>
     <initial-install-p>f</initial-install-p>
     <singleton-p>f</singleton-p>
-    <auto-mount>theme</auto-mount>
+    <auto-mount>theme-selva</auto-mount>
     
     
     
