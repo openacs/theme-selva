@@ -18,7 +18,7 @@ if { [template::util::is_nil subnavbar_link] } {
  
 set community_id [dotlrn_community::get_community_id]
 if {[exists_and_not_null community_id]} {
-	set css_url [parameter::get_from_package_key -package_key "theme-selva" -parameter "communityCssUrl" -default "/resources/theme-selva/Selva/green/Selva.css"]
+	set css_url [parameter::get_from_package_key -package_key "theme-selva" -parameter "communityCssUrl" -default "/resources/theme-selva/Selva/turquoise/Selva.css"]
 	
     } else {
 	set css_url [parameter::get_from_package_key -package_key "theme-selva" -parameter "cssUrl" -default "/resources/theme-selva/Selva/default/Selva.css"]

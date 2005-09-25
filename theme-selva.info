@@ -19,7 +19,7 @@
         </callbacks>
         <parameters>
         <!-- No version parameters -->
-		<parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="AdditionalSubnavbarTabs"  default="/dotlrn/ theme-selva.Home /theme/courses theme-selva.Courses  /pvt/home theme-selva.Preferences  /dotlrn/control-panel theme-selva.Tools  /register/logout theme-selva.Logout" description="list of URL Names pairs which will make it into additional subnavbar tabs"/>
+		<parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="AdditionalSubnavbarTabs"  default="/dotlrn/ theme-selva.MySpace /theme/courses theme-selva.Courses  /pvt/home theme-selva.Preferences  /dotlrn/control-panel theme-selva.Tools  /register/logout theme-selva.Logout" description="list of URL Names pairs which will make it into additional subnavbar tabs"/>
    		<parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="isLogoActivated"  default="1" description="Boolean to display the logo or not"/>
 		<parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="logoUrl"  default="/resources/theme-selva/Selva/default/images/logo.gif" description="url for the logo"/>
 		<parameter datatype="string" min_n_values="1"  max_n_values="1"  name="cssUrl"  default="/resources/theme-selva/Selva/default/Selva.css" description="default css_url"/>
