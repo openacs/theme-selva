@@ -1,0 +1,299 @@
+/* Stylesheet for the Selva default look and feel */
+/* Credits 
+	Software development:  the .LRN development community (www.dotlrn.org)
+	Release Management: 
+	Visual Design:  Dorian Peters
+	CSS Development: Innova (http://www.innova.uned.es)
+end Credits */
+
+
+/* STANDARD TAGS */
+/* standard html (body, h1, p, form...) */
+
+body { 
+	background: #fff;
+	font: x-small sans-serif;
+	color: black;
+	margin: 0;
+	padding: 0;}
+	
+h1 { 
+	font-size: 130%; 
+	color: #999999; }
+
+#wrapper {
+	margin: 20px 20px 20px 50px; }
+	
+/* HEADER */
+/* contains: logo and tagline (which is a background image) */	
+
+#header {
+	background: transparent;
+	padding-bottom: .5em;
+	border-bottom: 1px solid #999;
+	margin-right: 10px;
+	}
+
+/* BREADCRUMBS and STATUS */
+/* contains: breadcrumns, user name, members online, login */
+
+#breadcrumbs {
+	background: transparent;
+	text-align: left; }
+
+#context-bar {
+	padding-bottom: 1.3em;
+	margin-top: -0.5em;
+	float: none;
+	color: #000;
+	text-transform: lowercase;
+	font-size: 110%;
+	line-height: 1.4em;
+	}
+
+#context-bar a {
+   color: #005896;
+   text-decoration: none;
+	}
+
+#context-bar a:hover {
+   color: #005896;
+   text-decoration: underline;
+	}
+	
+#context-bar a:visited {
+	color: #a55858;
+	text-decoration: none;
+	}
+
+#status  {
+	margin-bottom: 3em;
+	margin-right: 10px;
+	}
+	
+#status ul {
+	text-align: center;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	float: right;
+}
+
+#status li {
+	border: 1px solid #d18484;
+	background: url(images/li_status_background.png) no-repeat center left;
+	padding-left: 2em;
+	padding-right: .5em;
+	padding-top: .3em;
+	padding-bottom: .3em;
+	}
+	
+#status li.user {
+	border: 0px;
+	background: #fff;
+	}
+	
+#status ul li {
+	text-align: center;
+	display: block;
+	float: left;
+	margin-right: .7em;
+	}
+
+#status a {
+	text-decoration: none;
+	}
+
+/*#youarehere {
+	font: 150% sans-serif;
+	color: #005896;
+	font-weight: bold;
+	margin-bottom: 3eset portal_subnavigation_cssm;
+	}*/
+
+	
+/* PORTAL */
+/* contains: all portlets, main navigation, sub navigation etc. */
+	
+#portal-navigation {
+	margin-top:7em;
+	background: #fff;
+	clear:both;
+	margin-left: -2em;
+	font-size: 125%;
+	}
+	
+#portal-navigation li {
+	display: inline;
+	list-style: none;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 0;
+	padding: 10px 10px 5px 10px;
+	margin: 0;
+	}
+
+#portal-navigation li a {
+	text-decoration: none;
+	padding: 10px 10px 5px 15px;
+	}
+	
+#portal-navigation li a img{
+	border: 0;
+	padding-right: 5px;
+	margin-bottom: -5px; }
+	
+#portal-navigation li.active {
+	background: #95ADC8;
+	}
+	
+#portal-navigation li.active a {
+	color: #fff;
+	font-weight: bold;
+	}
+
+
+#portal-subnavigation {
+	margin-right: 10px;
+	margin-top: -.8em;
+	background: #95ADC8;
+	color: #F2F1CB;
+	padding: .3em 0px 0px 0px;
+	border: 1px solid #6b8ce7;
+	}
+	
+#portal-subnavigation-links {
+	background: #95ADC8;
+	padding: .5em 0px .3em .5em;
+	margin-right: 10px;
+	margin-top: -.8em;
+	}
+	
+#portal-subnavigation-links ul {
+ 	display: inline; }
+	
+#portal-subnavigation-links li {
+ 	display: inline;
+	list-style: none;
+	padding: 0px 10px 0px 15px ;
+	font-size: 115%;
+	}
+	
+#portal-subnavigation-links li img {
+	border: 0;
+	padding-right: 5px;
+	vertical-align: top;
+	margin: -1px; /* having this here prevents white space btw the portlet title and portlet body*/}
+
+#portal-subnavigation-links a:visited {
+ 	display: inline;
+	color: #333;
+	text-decoration: none;
+	list-style: none;
+	padding: 0px 10px 0px 0px ; }
+	
+#portal-subnavigation-links a:link {
+ 	display: inline;
+	color: #333;
+	text-decoration: none;
+	list-style: none;
+	padding: 0px 10px 0px 0px ; }
+	
+#portal-subnavigation-links  a:active {
+ 	display: inline;
+	color: #fff;
+	text-decoration: none;
+	list-style: none;
+	padding: 0px 10px 0px 0px ; 
+	}
+			
+#portal {
+	border:1px solid #ccc;
+	background: #F5F4E4;
+	padding-top: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-right: 10px;
+	font-size: 115%;
+	 }
+	
+#left-column {
+	float: left; 
+	width: 30%;
+	height: 60%;
+	margin-left: 10px;
+	vertical-align:top; }
+	
+#right-column {
+	width: 60%;
+	height: 60%;
+	margin-left: 35%;
+	vertical-align:top;  }
+	
+
+	
+/* PORTLETS */
+/* contains: all general portlet styles like title, frame, font etc. */
+/* Note: additional styles for specific packages (ie. calendar, survey) 
+are located in the css for that package (eg. Selva_calendar.css)  */
+
+.portlet-wrapper {
+	margin: 20px;}
+	
+.portlet-title {
+	position:relative;
+	left:0px;
+	top:0px;
+	background: #95ADC8;
+	/*url(images/portlet_titleCorner.gif) no-repeat top right;*/
+	text-align:left;
+	padding: 4px 15px 3px 10px; 
+	margin-right:40%;
+	margin-left:5%;
+	border-top: 1px solid #6b8ce7;
+	border-left: 1px solid #6b8ce7;
+	border-right: 1px solid #6b8ce7;
+	}
+	
+.portlet-title span {
+	color: #fff;
+	font-size: 130%;
+	padding-left:20px;
+	padding-right: 30px;
+	display:inline;
+	font-weight: bold;
+	}
+	
+.portlet-title img {
+	padding: 0 5px 0 5px;
+	text-align:right;}
+	
+.portlet {
+	background: #FFFFFF; 
+	border: 1px solid #ccc;
+	padding: 10px;
+	}
+	
+.portlet ul {  
+	padding-top:0px; 
+	display: inline; }
+	
+.portlet ul li{
+	margin-left: 25px;
+	padding-top:0px; }
+	
+	
+	
+/* FOOTER */
+/* contains: links to standards compliance, dotlrnn.org, any license info  */
+
+#footer {
+	background: url(images/logo_footer.png) no-repeat top right;
+	margin-top: 1.5em;
+	margin-right: 2em;
+	margin-left: 2em;
+	padding-top: 1em;
+	padding-bottom: 4em;
+	text-align: center;
+	}
