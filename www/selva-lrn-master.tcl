@@ -1,5 +1,6 @@
 # $Id$
 
+#append url [ad_url] [ad_return_url]
 set user_id [ad_get_user_id] 
 set community_id [dotlrn_community::get_community_id]
 set dotlrn_url [dotlrn::get_url]
@@ -23,7 +24,7 @@ set header_img_url "/resources/dotlrn/logo"
 set header_img_file "[acs_root_dir]/packages/dotlrn/www/resources/logo"
 set header_img_alt_text "Header Logo"
 
-set extra_spaces "<img src=\"/resources/dotlrn/spacer.gif\" border=0 width=15>"
+set extra_spaces "<img src=\"/resources/dotlrn/spacer.gif\" alt=\"\" border=0 width=15>"
 set td_align "align=\"center\" valign=\"top\""
 
 if {[dotlrn::user_p -user_id $user_id]} {
@@ -268,7 +269,7 @@ if { $make_navbar_p } {
 	set youarehere "[_ theme-selva.MySpace]"
     }
 
-    set extra_spaces "<img src=\"/resources/dotlrn/spacer.gif\" border=0 width=15>"    
+    set extra_spaces "<img src=\"/resources/dotlrn/spacer.gif\" alt=\"\" border=0 width=15>"    
     #set subnavbar [selva::portal_navbar]
     set subnavbar [selva::portal_subnavbar \
         -user_id $user_id \
@@ -306,7 +307,7 @@ if { ![template::util::is_nil focus] } {
 
         # Add safety code to test that the element exists '
         set header_stuff "$header_stuff
-          <script language=\"JavaScript\">
+          <script language=\"JavaScript\" type=\"text/javascript\">
             function acs_focus( form_name, element_name ){
                 if (document.forms == null) return;
                 if (document.forms\[form_name\] == null) return;

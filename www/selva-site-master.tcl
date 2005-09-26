@@ -4,6 +4,9 @@
 #   header_stuff
 #   section
 
+# url used as referer
+append url [ad_url] [ad_return_url]
+
 if { ![info exists section] } {
     set section {}
 }

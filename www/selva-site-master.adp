@@ -27,7 +27,7 @@
 <if @is_logo_url@ not nil> 
 <!-- header (contains logo) -->
 <div id="header">
-<img src="@is_logo_url;noquote@">
+<img src="@is_logo_url;noquote@" alt="Logo">
 </div>
 </if>
 <!-- Header -->
@@ -96,18 +96,12 @@
 
 <slave>
 
-<div id="footer">
-  <div class="action-list">
-      <if @num_of_locales@ gt 1>
-        <a href="@change_locale_url@">#acs-subsite.Change_locale_label#</a>
-      </if>
-      <else>
-        <if @locale_admin_url@ not nil>
-          <a href="@locale_admin_url@">Install locales</a>
-        </if>
-      </else>
-    <a href="/doc/theme-selva/">Documentation on this theme</a>
-  </div>
+<div class="footer">
+    <a href="/doc/theme-selva/">Selva theme theme</a> |
+ <a href="http://validator.w3.org/check/referer">XHTML</a>,
+ <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>,
+ <a href="http://feedvalidator.org/check?url=@url@">RSS</a>,
+ <a href="http://www.contentquality.com/mynewtester/cynthia.exe?Url1=@url@" title="Please note that no software can truly test your site for accessibility compliance.">508</a>.
 </div>
 
 <if @curriculum_bar_p@ true>

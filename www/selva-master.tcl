@@ -6,3 +6,5 @@
 # maybe by passing a propery in a page
 
 set dotlrn_installed_p [apm_package_installed_p dotlrn]
+
+append url [ad_url] [ad_return_url]

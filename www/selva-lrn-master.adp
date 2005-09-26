@@ -29,11 +29,7 @@
 </div>
 
 <div id="portal-bottom"></div>
-<div id="footer">
+<div class="footer">
   <a href="http://www.dotlrn.org">.LRN Home</a> |
   <a href="http://www.openacs.org/projects/dotlrn">.LRN Project Central</a> |
- <a href="http://validator.w3.org/check/referer">XHTML</a>, 
- <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>, 
- <a href="http://feedvalidator.org/check?url=@link@">RSS</a>,
- <a href="http://www.contentquality.com/mynewtester/cynthia.exe?Url1=@link@" title="Please note that no software can truly test your site for accessibility compliance.">508</a>. 
 </div>
