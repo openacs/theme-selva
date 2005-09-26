@@ -57,7 +57,7 @@ body {
 /* contains: logo and tagline (which is a background image) */	
 
 #header {
-	background: #F2F1CB url(images/image.png) no-repeat top left; }
+	background: #F2F1CB url(images/bannerImage.jpg) no-repeat top left; }
 
 /* BREADCRUMBS and STATUS */
 /* contains: breadcrumns, user name, members online, login */
@@ -280,7 +280,7 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 /* FOOTER */
 /* contains: links to standards compliance, dotlrnn.org, any license info  */
 
-#footer {
+.footer {
 	margin-top: 15px;
 	width: 100%;
 	text-align: center;
