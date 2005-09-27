@@ -1,4 +1,4 @@
-<master src="/packages/theme-selva/www/selva-blank-master">
+<master src="/www/blank-master">
   <if @title@ not nil>
     <property name="title">@title;noquote@</property>
   </if>
