@@ -21,7 +21,7 @@
 <div class="portlet-wrapper">
 
 <div class="portlet-title">
-<span>@name@</span>
+<span>@name;noquote@</span>
 <%  
 # does people use shade and destry buttons??? if so maybe these should be turned on 
 # <img src="/resources/theme-selva/Selva/default/images/portlet_shadeClose.gif">
