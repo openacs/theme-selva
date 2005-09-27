@@ -9,17 +9,15 @@
     <auto-mount>theme-selva</auto-mount>
     
     
-    
     <version name="0.7d2" url="http://openacs.org/repository/download/apm/theme-selva-0.7d2.apm">
         <owner url="mailto:">JM</owner>
 	<provides url="theme-selva" version="0.7d2"/>
         <!-- No dependency information -->
-
         <callbacks>
         </callbacks>
         <parameters>
         <!-- No version parameters -->
-		<parameter datatype="string"  min_n_values="1" max_n_values="1"  name="AdditionalSubnavbarTabs"  default="/dotlrn/ dotlrn.My_Workspace /theme-selva/courses dotlrn.Courses  /pvt/home dotlrn.Preferences  /dotlrn/control-panel dotlrn.control_panel /register/logout description="list of URL Names pairs which will make it into additional subnavbar tabs"/>
+		<parameter datatype="string"  min_n_values="1" max_n_values="1"  name="AdditionalSubnavbarTabs"  default="/dotlrn/ dotlrn.My_Workspace /theme-selva/courses dotlrn.Courses  /pvt/home dotlrn.Preferences  /dotlrn/control-panel dotlrn.control_panel /register/logout" description="list of URL Names pairs which will make it into additional subnavbar tabs"/>
    		<parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="isLogoActivated"  default="1" description="Boolean to display the logo or not"/>
 		<parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="logoUrl"  default="/resources/theme-selva/Selva/default/images/logo.gif" description="url for the logo"/>
 		<parameter datatype="string" min_n_values="1"  max_n_values="1"  name="cssUrl"  default="/resources/theme-selva/Selva/default/Selva.css" description="default css_url"/>
