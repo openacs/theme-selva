@@ -9,7 +9,7 @@
     <auto-mount>theme-selva</auto-mount>
 
     <version name="0.7d2" url="http://openacs.org/repository/download/apm/theme-selva-0.7d2.apm">
-        <owner url="mailto:rafael.a.calvo@gmail.com">Rafael Calvo</owner>
+        <owner url="http:/www.weg.ee.usyd.edu.au">Rafael Calvo</owner>
         <release-date>2005-09-28</release-date>
         <vendor url="http://www.weg.usyd.edu.au"></vendor>
         <maturity>0</maturity>
