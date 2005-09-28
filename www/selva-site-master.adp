@@ -59,14 +59,20 @@
 <div id="status">
 <!-- memebers online -->
 <div class="action-list users-online">
-      <a href="@whos_online_url@">@num_users_online@ <if @num_users_online@ eq 1>member</if><else>members</else> online</a>
+     <a href="@whos_online_url@">@num_users_online@ <if @num_users_online@ eq 1>member</if><else>members</else> online</a>
+     <if @untrusted_user_id@ ne 0>
+      | <a href="@logout_url@" title="#acs-subsite.Logout_from_system#">#acs-subsite.Logout#</a>
+    </if>
+    <else>
+      #acs-subsite.Not_logged_in#
+    </else>
   </div>
 
 
 <!-- user greeting -->
 <div class="user-greeting">
     <if @untrusted_user_id@ ne 0>
-      #acs-subsite.Welcome_user#
+      #acs-subsite.Welcome_user#  |
     </if>
     <else>
       #acs-subsite.Not_logged_in#

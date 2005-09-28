@@ -19,7 +19,7 @@
         <callbacks>
         </callbacks>
         <parameters>
-            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="AdditionalSubnavbarTabs"  default="/dotlrn/ theme-selva.MySpace /theme-selva/courses theme-selva.Courses  /theme-selva/communities theme-selva.Communities /pvt/home dotlrn.Preferences  /dotlrn/control-panel theme-selva.Tools /register/logout theme-selva.Logout" description="list of URL Names pairs which will make it into additional subnavbar tabs"/>
+            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="AdditionalSubnavbarTabs"  default="/dotlrn/ theme-selva.MySpace /theme-selva/courses theme-selva.Courses  /theme-selva/communities theme-selva.Communities /pvt/home dotlrn.Preferences  /dotlrn/control-panel theme-selva.Tools" description="list of URL Names pairs which will make it into additional subnavbar tabs"/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="communityCssUrl"  default="/resources/theme-selva/Selva/turquoise/Selva.css" description="default class css_url"/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="courseCssUrl"  default="/resources/theme-selva/Selva/green/Selva.css" description="default comunity css_url"/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="cssUrl"  default="/resources/theme-selva/Selva/default/Selva.css" description="default css_url"/>
