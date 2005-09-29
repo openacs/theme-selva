@@ -78,7 +78,7 @@ namespace eval selva {
 
 	set small_title_p [parameter::get_from_package_key -package_key "theme-selva" -parameter "SmallTitleP" -default "0"]
 	if {[exists_and_not_null community_id] && $small_title_p} {
-	    lappend tabs_list [list "" [dotlrn_community::get_community_name $community_id]]
+	    lappend tabs_list [list "$current_url" [dotlrn_community::get_community_name $community_id]]
 	} 
 
 	foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalSubnavbarTabs" -default ""] {
