@@ -269,6 +269,11 @@ if { $make_navbar_p } {
 	set youarehere "[_ theme-selva.MySpace]"
     }
 
+    # Behaviour of the title
+    if {[parameter::get_from_package_key -package_key "theme-selva" -parameter "SmallTitleP" -default "0"]} {
+	set youarehere ""
+    }
+
     set extra_spaces "<img src=\"/resources/dotlrn/spacer.gif\" alt=\"\" border=0 width=15>"    
     #set subnavbar [selva::portal_navbar]
     set subnavbar [selva::portal_subnavbar \
@@ -356,3 +361,4 @@ set toggle_translator_mode_url [export_vars -base "${acs_lang_url}admin/translat
 
 # Curriculum bar
 set curriculum_bar_p [llength [site_node::get_children -all -filters { package_key "curriculum" } -node_id $community_id]]
+

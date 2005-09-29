@@ -35,6 +35,89 @@ namespace eval selva {
 	for dotlrn. It is called from the selva-master template.
     } {
 	set current_url [ad_conn url]
+
+	# Set up some basic stuff
+	set community_id [dotlrn_community::get_community_id]
+
+	# Get user information
+	set sw_admin_p 0
+	set user_id [ad_conn user_id]
+	set untrusted_user_id [ad_conn untrusted_user_id]
+	if { $untrusted_user_id != 0 } {
+	    set user_name [person::name -person_id $untrusted_user_id]
+	    set pvt_home_url [ad_pvt_home]
+	    set pvt_home_name [_ acs-subsite.Your_Account]
+	    set logout_url [ad_get_logout_url]
+	    
+	    # Site-wide admin link
+	    set admin_url {}
+	    
+	    set sw_admin_p [acs_user::site_wide_admin_p -user_id $untrusted_user_id]
+	    
+	    if { $sw_admin_p } {
+		set admin_url "/acs-admin/"
+		set locale_admin_url "/acs-lang/admin"
+	    } else {
+		set subsite_admin_p [permission::permission_p \
+					 -object_id [subsite::get_element -element object_id] \
+					 -privilege admin \
+					 -party_id $untrusted_user_id]
+		
+		if { $subsite_admin_p  } {
+		    set admin_url "[subsite::get_element -element url]admin/"
+		}
+	    }
+	} else {
+	    set login_url [ad_get_login_url -return]
+	    set user_name {}
+	}
+	
+	set subnavbar "<ul>"
+
+	set tabs_list [list]
+
+	set small_title_p [parameter::get_from_package_key -package_key "theme-selva" -parameter "SmallTitleP" -default "0"]
+	if {[exists_and_not_null community_id] && $small_title_p} {
+	    lappend tabs_list [list "" [dotlrn_community::get_community_name $community_id]]
+	} 
+
+	foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalSubnavbarTabs" -default ""] {
+	    lappend tabs_list [list "$url" "$name"]
+	}
+
+	# Login and Logout Link
+	if {[exists_and_not_null logout_url]} {
+	    lappend tabs_list [list "$logout_url" "#acs-subsite.Logout#"]
+	} else {
+	    lappend tabs_list [list "$login_url" "#acs-subsite.Log_In#"]
+	}
+
+	if { $sw_admin_p } {
+	    lappend tabs_list [list "$admin_url" "#acs-subsite.Site_Wide_Admin#"]
+	    lappend tabs_list [list "$locale_admin_url" "#acs-subsite.Install_locales#"]
+	}
+
+	ns_log Notice "TABS" $tabs_list
+	foreach tab_entry $tabs_list {
+	    set url [lindex $tab_entry 0]
+	    set name [lindex $tab_entry 1]
+	    ns_log Notice "URL:: $url"
+	    ns_log Notice "NAME:: $name"
+	    # if url is /dotlrn or /dotlrn/index we highlight the "Home" tab, otherwise we highlight the tab with the current_url, if there is one, i.e. we are not in a community
+	    if { $url == $current_url || ($url == "/dotlrn/" && $current_url == "/dotlrn/index")} {
+		append subnavbar "\n<li class=\"active\"><a href=\"$url\">"
+		#if {$picture != "null" } { append subnavbar "<img src=\"$picture\" alt=\"$picture\">" }
+		append subnavbar "[lang::util::localize $name]</a></li>"
+	    } else {
+		append subnavbar "\n<li><a href=\"$url\">[lang::util::localize $name]</a></li>"
+	    }
+	    
+	}
+	
+	append subnavbar "\n</ul>"
+    }
+
+	set current_url [ad_conn url]
 	
 	set subnavbar "<ul>"
 	

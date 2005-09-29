@@ -8,23 +8,24 @@
     <singleton-p>f</singleton-p>
     <auto-mount>theme-selva</auto-mount>
 
-    <version name="0.7d2" url="http://openacs.org/repository/download/apm/theme-selva-0.7d2.apm">
+    <version name="0.7d3" url="http://openacs.org/repository/download/apm/theme-selva-0.7d3.apm">
         <owner url="http:/www.weg.ee.usyd.edu.au">Rafael Calvo</owner>
         <release-date>2005-09-28</release-date>
         <vendor url="http://www.weg.usyd.edu.au"></vendor>
         <maturity>0</maturity>
 
-        <provides url="theme-selva" version="0.7d2"/>
+        <provides url="theme-selva" version="0.7d3"/>
 
         <callbacks>
         </callbacks>
         <parameters>
-            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="AdditionalSubnavbarTabs"  default="/dotlrn/ theme-selva.MySpace /theme-selva/courses theme-selva.Courses  /theme-selva/communities theme-selva.Communities /pvt/home dotlrn.Preferences  /dotlrn/control-panel theme-selva.Tools" description="list of URL Names pairs which will make it into additional subnavbar tabs"/>
+            <parameter datatype="string"  min_n_values="1"  max_n_values="1" name="AdditionalSubnavbarTabs"  default="/dotlrn/ #dotlrn.My_Workspace# /theme-selva/courses #dotlrn.Courses# /pvt/home #dotlrn.Preferences# /dotlrn/control-panel #dotlrn.control_panel#" description="list of URL Names pairs which will make it into additional subnavbar tabs"/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="communityCssUrl"  default="/resources/theme-selva/Selva/turquoise/Selva.css" description="default class css_url"/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="courseCssUrl"  default="/resources/theme-selva/Selva/green/Selva.css" description="default comunity css_url"/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="cssUrl"  default="/resources/theme-selva/Selva/default/Selva.css" description="default css_url"/>
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="isLogoActivated"  default="1" description="Boolean to display the logo or not"/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="logoUrl"  default="/resources/theme-selva/Selva/images/dotLRN-logo.gif" description="url for the logo"/>
+            <parameter datatype="string"  min_n_values="1"  max_n_values="1" name="SmallTitleP"  default="0" description="This will take the title out from the prominent place on the top left, but add the name of community you are in as a special tab"/>
         </parameters>
 
     </version>

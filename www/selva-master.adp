@@ -8,6 +8,4 @@
   <property name="context">@context;noquote@</property>
   <property name="displayed_object_id">@displayed_object_id@</property>
   <property name="header_stuff">@header_stuff;noquote@</property>
-  </property>
-
 <slave>
