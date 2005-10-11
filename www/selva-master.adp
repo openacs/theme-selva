@@ -9,6 +9,5 @@
   <if @displayed_object_id@ not nil><property name="displayed_object_id">@displa
 yed_object_id;noquote@</property></if>
   <if @header_stuff@ not nil><property name="header_stuff">@header_stuff;noquote@</property></if>
-  </property>
 
 <slave>
