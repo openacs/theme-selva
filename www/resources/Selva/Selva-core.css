@@ -249,7 +249,19 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	padding-right: 30px;
 	display:inline;}
 
-.leftColumn .portlet-title {
+.leftColumn { 
+        margin-right: 10% !important;
+              width: 35%;
+              vertical-align: top;
+ }
+
+.rightColumn { 
+        margin-right: 10% !important;
+              width: 65%;
+              vertical-align: top;
+ }
+
+.portlet-title {
         margin-right: 10% !important;
 }   	
 .portlet-title img {
