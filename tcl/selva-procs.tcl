@@ -117,26 +117,6 @@ namespace eval selva {
 	append subnavbar "\n</ul>"
     }
 
-	set current_url [ad_conn url]
-	
-	set subnavbar "<ul>"
-	
-	foreach {url name } [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalSubnavbarTabs" -default ""] {
-	    
-	    # if url is /dotlrn or /dotlrn/index we highlight the "Home" tab, otherwise we highlight the tab with the current_url, if there is one, i.e. we are not in a community
-	    if { $url == $current_url || ($url == "/dotlrn/" && $current_url == "/dotlrn/index")} {
-		append subnavbar "\n<li class=\"active\"><a href=\"$url\">"
-		#if {$picture != "null" } { append subnavbar "<img src=\"$picture\" alt=\"$picture\">" }
-		append subnavbar "[_ $name]</a></li>"
-	    } else {
-		append subnavbar "\n<li><a href=\"$url\">[_ $name]</a></li>"
-	    }
-	    
-	}
-	
-	append subnavbar "\n</ul>"
-    }
-
     ad_proc -public portal_subnavbar {
         {-user_id:required}
         {-link_control_panel:required}
