@@ -57,6 +57,7 @@ namespace eval selva {
 	    if { $sw_admin_p } {
 		set admin_url "/acs-admin/"
 		set locale_admin_url "/acs-lang/admin"
+		set dotlrn_admin_url "/dotlrn/admin"
 	    } else {
 		set subsite_admin_p [permission::permission_p \
 					 -object_id [subsite::get_element -element object_id] \
@@ -85,16 +86,8 @@ namespace eval selva {
 	    lappend tabs_list [list "$url" "$name"]
 	}
 
-	# Login and Logout Link
-	if {[exists_and_not_null logout_url]} {
-	    lappend tabs_list [list "$logout_url" "#acs-subsite.Logout#"]
-	} else {
-	    lappend tabs_list [list "$login_url" "#acs-subsite.Log_In#"]
-	}
-
 	if { $sw_admin_p } {
-	    lappend tabs_list [list "$admin_url" "#acs-subsite.Site_Wide_Admin#"]
-	    lappend tabs_list [list "$locale_admin_url" "#acs-subsite.Install_locales#"]
+	    lappend tabs_list [list "$dotlrn_admin_url" "#dotlrn.Administration_Cockpit#"]
 	}
 
 	ns_log Notice "TABS" $tabs_list
