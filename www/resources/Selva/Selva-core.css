@@ -274,6 +274,12 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	padding-left: 15px;
 	background:url(images/bullet.gif) no-repeat 0 7px;  
 	padding-top:0px; }
+
+.button {
+text-decoration: underline;
+padding-right: 5px;
+border-right: 1px solid #666666;
+}
 	
 	
 	
