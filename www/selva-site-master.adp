@@ -34,8 +34,30 @@
 <br>
 <div id="site-header">
 
+	You are here:
+<div id="status">
+<!-- memebers online -->
+<div class="action-list users-online">
+     <a href="@whos_online_url@">@num_users_online@ <if @num_users_online@ eq 1>member</if><else>members</else> online</a>
+     <if @untrusted_user_id@ ne 0>
+      | <a href="@logout_url@" title="#acs-subsite.Logout_from_system#">#acs-subsite.Logout#</a>
+    </if>
+    <else>
+      #acs-subsite.Not_logged_in#
+    </else>
+  </div>
+
+<!-- user greeting -->
+<div class="user-greeting">
+    <if @untrusted_user_id@ ne 0>
+      #acs-subsite.Welcome_user#  |
+    </if>
+  </div>
+
+
+</div> <!-- end of status -->
+
 <div id="breadcrumbs">
-<!-- displays "you are here" -->  
 <div id="context-bar">
   <if @context_bar@ not nil>
     <div id="breadcrumbs">@context_bar;noquote@</div>
@@ -56,28 +78,6 @@
   <div style="clear: both;"></div>
 </div>
 
-<div id="status">
-<!-- memebers online -->
-<div class="action-list users-online">
-     <a href="@whos_online_url@">@num_users_online@ <if @num_users_online@ eq 1>member</if><else>members</else> online</a>
-     <if @untrusted_user_id@ ne 0>
-      | <a href="@logout_url@" title="#acs-subsite.Logout_from_system#">#acs-subsite.Logout#</a>
-    </if>
-    <else>
-      #acs-subsite.Not_logged_in#
-    </else>
-  </div>
-
-
-<!-- user greeting -->
-<div class="user-greeting">
-    <if @untrusted_user_id@ ne 0>
-      #acs-subsite.Welcome_user#  |
-    </if>
-  </div>
-
-
-</div> <!-- end of status -->
   </div> <!-- end of breadcrumbs -->
   
 

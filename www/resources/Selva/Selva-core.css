@@ -65,12 +65,13 @@ body {
 #breadcrumbs {
 	background: #F2F1CB;
 	text-align: left;
-	font-size: 100%;
-	font-weight:bold; }
+	font-size: 100%;}
 	
 	#status {
 	text-align: right;
+	margin-top: -13px;
 	}
+
 	
 	#status .users-online {
 	float:right;
@@ -79,8 +80,7 @@ body {
 	
 	#status .user-greeting {
 	display:inline;
-  	padding-right: 2em;
-	
+  	padding-right: 0.4em;
 	}
 	
 	#status .permanent-navigation {
