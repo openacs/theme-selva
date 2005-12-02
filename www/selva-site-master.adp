@@ -74,9 +74,6 @@
     <if @untrusted_user_id@ ne 0>
       #acs-subsite.Welcome_user#  |
     </if>
-    <else>
-      #acs-subsite.Not_logged_in#
-    </else>
   </div>
 
 
