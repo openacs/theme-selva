@@ -24,12 +24,9 @@
 
 
 
-<div id="left-column">
-<div class="portlet-wrapper">
 <div class="portlet-title"><span>@portlet_title@</span>
 </div> <!-- class : portlet-title -->
 <div class="portlet">
   <include src="/packages/dotlrn/www/dotlrn-main-portlet" show_buttons_p="1" show_archived_p=0 title="Groups" referer="@dotlrn_url@/control-panel">
  </div> <!-- class : portlet -->
- </div> <!-- classs : portlet-wrapper -->
-</div> <!-- id : left-column -->
+<br>
