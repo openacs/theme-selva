@@ -249,6 +249,14 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	padding-right: 30px;
 	display:inline;}
 
+.portlet-title h2 {
+        color: #FFFFFF;
+        font-size: 100%;
+        padding-left:0px;
+        padding-right:0px;
+        display:inline;}
+
+
 .leftColumn .portlet-title {
         margin-right: 10% !important;
 }   	
@@ -276,9 +284,9 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	padding-top:0px; }
 
 .button {
-text-decoration: underline;
-padding-right: 5px;
-border-right: 1px solid #666666;
+	text-decoration: underline;
+	padding-right: 5px;
+	border-right: 1px solid #666666;
 }
 	
 	
