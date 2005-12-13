@@ -361,4 +361,3 @@ set toggle_translator_mode_url [export_vars -base "${acs_lang_url}admin/translat
 
 # Curriculum bar
 set curriculum_bar_p [llength [site_node::get_children -all -filters { package_key "curriculum" } -node_id $community_id]]
-

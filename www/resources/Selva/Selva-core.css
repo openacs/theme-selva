@@ -299,5 +299,17 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	width: 100%;
 	text-align: center;
 	background: #F2F1CB;}
+
+/* Div Links */
+/* Contains: link which on hover displays additional information */
+
+a div#listlink {
+	display:none;
+} 
+
+a:hover div#listlink {
+	display:block;
+}
+
 	
 	
