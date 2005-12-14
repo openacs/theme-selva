@@ -90,12 +90,12 @@ namespace eval selva {
 	    lappend tabs_list [list "$dotlrn_admin_url" "#dotlrn.Administration_Cockpit#"]
 	}
 
-	ns_log Notice "TABS" $tabs_list
+	ns_log Debug "TABS" $tabs_list
 	foreach tab_entry $tabs_list {
 	    set url [lindex $tab_entry 0]
 	    set name [lindex $tab_entry 1]
-	    ns_log Notice "URL:: $url"
-	    ns_log Notice "NAME:: $name"
+	    ns_log Debug "URL:: $url"
+	    ns_log Debug "NAME:: $name"
 	    # if url is /dotlrn or /dotlrn/index we highlight the "Home" tab, otherwise we highlight the tab with the current_url, if there is one, i.e. we are not in a community
 	    if { $url == $current_url || ($url == "/dotlrn/" && $current_url == "/dotlrn/index")} {
 		append subnavbar "\n<li class=\"active\"><a href=\"$url\">"
