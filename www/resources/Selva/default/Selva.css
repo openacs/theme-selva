@@ -79,4 +79,14 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	padding: 0 5px 0 5px;
 	text-align:right;}
 	
+/* Div Links */
+/* Contains: link which on hover displays additional information */
+
+a div#listlink {
+	display:none;
+} 
+
+a:hover div#listlink {
+	display:block;
+}
 	

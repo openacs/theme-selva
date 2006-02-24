@@ -65,12 +65,13 @@ body {
 #breadcrumbs {
 	background: #F2F1CB;
 	text-align: left;
-	font-size: 100%;
-	font-weight:bold; }
+	font-size: 100%;}
 	
 	#status {
 	text-align: right;
+	margin-top: -13px;
 	}
+
 	
 	#status .users-online {
 	float:right;
@@ -79,8 +80,7 @@ body {
 	
 	#status .user-greeting {
 	display:inline;
-  	padding-right: 2em;
-	
+  	padding-right: 0.4em;
 	}
 	
 	#status .permanent-navigation {
@@ -261,9 +261,18 @@ are located in the css for that package (eg. Selva_calendar.css)  */
               vertical-align: top;
  }
 
+.portlet-title h2 {
+        color: #FFFFFF;
+        font-size: 100%;
+        padding-left:0px;
+        padding-right:0px;
+        display:inline;
+}
+
 .portlet-title {
         margin-right: 10% !important;
 }   	
+
 .portlet-title img {
 	padding: 0 5px 0 5px;
 	text-align:right;}
@@ -286,6 +295,12 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	padding-left: 15px;
 	background:url(images/bullet.gif) no-repeat 0 7px;  
 	padding-top:0px; }
+
+.button {
+	text-decoration: underline;
+	padding-right: 5px;
+	border-right: 1px solid #666666;
+}
 	
 	
 	
@@ -297,5 +312,17 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	width: 100%;
 	text-align: center;
 	background: #F2F1CB;}
+
+/* Div Links */
+/* Contains: link which on hover displays additional information */
+
+a div#listlink {
+	display:none;
+} 
+
+a:hover div#listlink {
+	display:block;
+}
+
 	
 	

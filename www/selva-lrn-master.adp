@@ -9,6 +9,7 @@
  
 
 <if @youarehere@ not nil><div id="youarehere">@youarehere;noquote@</div><br /></if> 
+<else><div id="youarehere"></div></else>
 
 <div id="portal-navigation">
 <if @navbar@ not nil>@navbar;noquote@</if> 
