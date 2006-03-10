@@ -1,7 +1,3 @@
--- Creating theme Selva
-
-SELECT portal_element_theme__new ('selva','Selva Theme','../../theme-selva/www/themes/selva-theme','../../theme-selva/www/themes/selva-theme');
-
 -- Adding site templates 
 
 create function inline_0()
