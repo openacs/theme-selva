@@ -361,3 +361,10 @@ set toggle_translator_mode_url [export_vars -base "${acs_lang_url}admin/translat
 
 # Curriculum bar
 set curriculum_bar_p [llength [site_node::get_children -all -filters { package_key "curriculum" } -node_id $community_id]]
+
+# Bring in header stuff from portlets, e.g. dhtml tree javascript
+# from dotlrn-main-portlet.
+global dotlrn_master__header_stuff
+if { ![info exists dotlrn_master__header_stuff] } {
+    set dotlrn_master__header_stuff ""
+}
