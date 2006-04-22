@@ -212,7 +212,7 @@ namespace eval selva {
 	 }
 
 	if  {[regexp {dotlrn/(clubs|classes)/*} [ad_conn url]]} { 
-	    append navbar "\n<li><a href=\"one-community-admin\">Admin</a></li>"
+	    append navbar "\n<li><a href=\"$control_panel_url\">Admin</a></li>"
 	}
 
 	append navbar "</ul>"
