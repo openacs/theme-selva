@@ -43,7 +43,7 @@
       | <a href="@logout_url@" title="#acs-subsite.Logout_from_system#">#acs-subsite.Logout#</a>
     </if>
     <else>
-      #acs-subsite.Not_logged_in#
+      | <a href="/register/">#acs-subsite.Log_In#</a>
     </else>
   </div>
 
