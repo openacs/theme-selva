@@ -45,6 +45,19 @@ end Credits */
 	background: #98c472 url(images/subnav_corner.gif) no-repeat top right;
 	 padding: 2px 0px 0px 0px;}
 	
+	#portal-subnavigation-links li a:link,
+	#portal-subnavigation-links li a:visited {
+        color: #ffffff;
+        }
+
+	#portal-subnavigation-links li a:hover {
+        color: #000000;
+        }
+
+	#portal-subnavigation-links li.active a:link,
+	#portal-subnavigation-links li.active a:visited {
+        color: #000000;
+        }
 			
 	
 	

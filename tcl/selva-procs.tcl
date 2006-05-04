@@ -191,11 +191,13 @@ namespace eval selva {
 	#as a ul instead of a table, which portal::navbar returns.  Obviously we shouldn't be letting display-level
 	#stuff decide where we put our code, but first we'll need to mod the portal package accordingly.
 
-	set page_num [ns_queryget page_num]
-	#Strip out extra anchors and other crud.
-	#page_num will be empty_string for special pages like
-	#My Space and Control Panel
-	regsub -all {[^0-9]} $page_num {} page_num
+	if { [catch {set page_num [ad_get_client_property dotlrn page_num]}] || $page_num eq "" || ![string is integer $page_num] } {
+	    set page_num [ns_queryget page_num]
+	    #Strip out extra anchors and other crud.
+	    #page_num will be empty_string for special pages like
+	    #My Space and Control Panel
+	    regsub -all {[^0-9]} $page_num {} page_num
+	}
 	
 	set navbar "<ul>\n"
 	
@@ -207,12 +209,21 @@ namespace eval selva {
 		 # We are looking at the active tab
 		# append navbar "\n<li class=\"current\"><a href=\"#\">$pretty_name</a></li>"
 	     #} else {
-		 append navbar "\n<li><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
+	    if {[string equal $page_num $sort_key]} {
+		append navbar "\n<li class=\"active\"><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
+	    } else {
+		append navbar "\n<li><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
+	    }
+#		 append navbar "\n<li><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
 	     #}
 	 }
 
 	if  {[regexp {dotlrn/(clubs|classes)/*} [ad_conn url]]} { 
-	    append navbar "\n<li><a href=\"$control_panel_url\">Admin</a></li>"
+	    if {[string match "*/one-community-admin" [ad_conn url]]} {
+		append navbar "\n<li class=\"active\"><a href=\"${link}one-community-admin\">Admin</a></li>"
+	    } else {
+		append navbar "\n<li><a href=\"${link}one-community-admin\">Admin</a></li>"
+	    }
 	}
 
 	append navbar "</ul>"

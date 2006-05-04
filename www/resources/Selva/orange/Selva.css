@@ -141,6 +141,20 @@ body {
 	list-style: none;
 	padding: 0px 10px 0px 10px ; }
 			
+	#portal-subnavigation-links li a:link,
+	#portal-subnavigation-links li a:visited {
+        color: #ffffff;
+        }
+
+	#portal-subnavigation-links li a:hover {
+        color: #000000;
+        }
+
+	#portal-subnavigation-links li.active a:link,
+	#portal-subnavigation-links li.active a:visited {
+        color: #000000;
+        }
+
 #portal {
 	border-bottom:0.1px solid #F5F4E4;
 	background: #F5F4E4 url(images/portal_rightShadow.gif) repeat-y top right;
