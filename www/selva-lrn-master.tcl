@@ -275,7 +275,6 @@ if { $make_navbar_p } {
     }
 
     set extra_spaces "<img src=\"/resources/dotlrn/spacer.gif\" alt=\"\" border=0 width=15>"    
-    #set subnavbar [selva::portal_navbar]
     set subnavbar [selva::portal_subnavbar \
         -user_id $user_id \
         -link_control_panel $link_control_panel \

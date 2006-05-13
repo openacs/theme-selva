@@ -31,7 +31,7 @@ namespace eval selva {
     ad_proc -public portal_navbar {
 	
     } {
-	A helper procedure that generates the Subnavbar (above the portal navbar, ie the tabs)
+	A helper procedure that generates the Navbar, ie the tabs,
 	for dotlrn. It is called from the selva-master template.
     } {
 	set current_url [ad_conn url]
@@ -73,16 +73,20 @@ namespace eval selva {
 	    set user_name {}
 	}
 	
-	set subnavbar "<ul>"
+	set navbar "<ul>"
 
 	set tabs_list [list]
 
-	set small_title_p [parameter::get_from_package_key -package_key "theme-selva" -parameter "SmallTitleP" -default "0"]
-	if {[exists_and_not_null community_id] && $small_title_p} {
-	    lappend tabs_list [list "$current_url" [dotlrn_community::get_community_name $community_id]]
+	if { [exists_and_not_null community_id] } {
+            if { [dotlrn_community::get_community_type_from_community_id $community_id] eq "dotlrn_community" } {
+                 set community_message_key "#dotlrn.My_Community#"
+            } else {
+                 set community_message_key "#dotlrn.My_Class#"
+            }
+	    lappend tabs_list [list "$current_url" $community_message_key]
 	} 
 
-	foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalSubnavbarTabs" -default ""] {
+	foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalNavbarTabs" -default ""] {
 	    lappend tabs_list [list "$url" "$name"]
 	}
 
@@ -98,16 +102,17 @@ namespace eval selva {
 	    ns_log Debug "NAME:: $name"
 	    # if url is /dotlrn or /dotlrn/index we highlight the "Home" tab, otherwise we highlight the tab with the current_url, if there is one, i.e. we are not in a community
 	    if { $url == $current_url || ($url == "/dotlrn/" && $current_url == "/dotlrn/index")} {
-		append subnavbar "\n<li class=\"active\"><a href=\"$url\">"
-		#if {$picture != "null" } { append subnavbar "<img src=\"$picture\" alt=\"$picture\">" }
-		append subnavbar "[lang::util::localize $name]</a></li>"
+		append navbar "\n<li class=\"active\"><a href=\"$url\">"
+		#if {$picture != "null" } { append navbar "<img src=\"$picture\" alt=\"$picture\">" }
+		append navbar "[lang::util::localize $name]</a></li>"
 	    } else {
-		append subnavbar "\n<li><a href=\"$url\">[lang::util::localize $name]</a></li>"
+		append navbar "\n<li><a href=\"$url\">[lang::util::localize $name]</a></li>"
 	    }
 	    
 	}
 	
-	append subnavbar "\n</ul>"
+	append navbar "\n</ul>"
+
     }
 
     ad_proc -public portal_subnavbar {
@@ -118,7 +123,7 @@ namespace eval selva {
         {-pre_html ""}
         {-post_html ""}
     } {
-        A helper procedure that generates the PORTAL navbar (the thing
+        A helper procedure that generates the portal subnavbar (the thing
         with the portal pages on it) for dotlrn. It is called from the
         dotlrn-master template
     } {
@@ -134,9 +139,10 @@ namespace eval selva {
             # else on the site
             set link "[dotlrn::get_url]/"
             
-            if {[dotlrn::user_p -user_id $user_id]} {
+            if {[dotlrn::user_p -user_id $user_id] &&
+                ($link eq [ad_conn url] || "${link}index" eq [ad_conn url]) } {
                 # this user is a dotlrn user, show their personal portal
-                # navbar, including the control panel link
+                # subnavbar, including the control panel link
                 set portal_id [dotlrn::get_portal_id -user_id $user_id]
                 set show_control_panel 1
             } else {
@@ -187,8 +193,8 @@ namespace eval selva {
             }
         }
 
-       #AG: This code belongs in the portal package, near portal::navbar.  For display reasons we need to do this
-	#as a ul instead of a table, which portal::navbar returns.  Obviously we shouldn't be letting display-level
+       #AG: This code belongs in the portal package, near portal::subnavbar.  For display reasons we need to do this
+	#as a ul instead of a table, which portal::subnavbar returns.  Obviously we shouldn't be letting display-level
 	#stuff decide where we put our code, but first we'll need to mod the portal package accordingly.
 
 	if { [catch {set page_num [ad_get_client_property dotlrn page_num]}] || $page_num eq "" || ![string is integer $page_num] } {
@@ -199,34 +205,25 @@ namespace eval selva {
 	    regsub -all {[^0-9]} $page_num {} page_num
 	}
 	
-	set navbar "<ul>\n"
+	set subnavbar "<ul>\n"
 	
 	db_foreach list_page_nums_select {} {
-	    #if { "$dotlrn_url/" == [ad_conn url] || "$dotlrn_url/index" == [ad_conn url]) && $sort_key == 0 && $page_num == ""} {
-		# active tab is  first tab and page_num may be ""
-		#append navbar "\n<li class=\"current\"><a href=\"#\">$pretty_name</a></li>"
-	     #} elseif {$page_num == $sort_key} {
-		 # We are looking at the active tab
-		# append navbar "\n<li class=\"current\"><a href=\"#\">$pretty_name</a></li>"
-	     #} else {
 	    if {[string equal $page_num $sort_key]} {
-		append navbar "\n<li class=\"active\"><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
+		append subnavbar "\n<li class=\"active\"><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
 	    } else {
-		append navbar "\n<li><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
+		append subnavbar "\n<li><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
 	    }
-#		 append navbar "\n<li><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
-	     #}
 	 }
 
 	if  {[regexp {dotlrn/(clubs|classes)/*} [ad_conn url]]} { 
 	    if {[string match "*/one-community-admin" [ad_conn url]]} {
-		append navbar "\n<li class=\"active\"><a href=\"${link}one-community-admin\">Admin</a></li>"
+		append subnavbar "\n<li class=\"active\"><a href=\"${link}one-community-admin\">Admin</a></li>"
 	    } else {
-		append navbar "\n<li><a href=\"${link}one-community-admin\">Admin</a></li>"
+		append subnavbar "\n<li><a href=\"${link}one-community-admin\">Admin</a></li>"
 	    }
 	}
 
-	append navbar "</ul>"
+	append subnavbar "</ul>"
 
     }
 
