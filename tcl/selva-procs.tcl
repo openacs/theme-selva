@@ -78,7 +78,8 @@ namespace eval selva {
 	set tabs_list [list]
 
 	if { [exists_and_not_null community_id] } {
-            if { [dotlrn_community::get_community_type_from_community_id $community_id] eq "dotlrn_community" } {
+            set type [dotlrn_community::get_community_type_from_community_id $community_id]
+            if { $type eq "dotlrn_community" || $type eq "dotlrn_club" || $type eq "dotlrn_pers_community" } {
                  set community_message_key "#dotlrn.My_Community#"
             } else {
                  set community_message_key "#dotlrn.My_Class#"
