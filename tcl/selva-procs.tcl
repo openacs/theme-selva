@@ -80,9 +80,9 @@ namespace eval selva {
 	if { [exists_and_not_null community_id] } {
             set type [dotlrn_community::get_community_type_from_community_id $community_id]
             if { $type eq "dotlrn_community" || $type eq "dotlrn_club" || $type eq "dotlrn_pers_community" } {
-                 set community_message_key "#dotlrn.My_Community#"
+                 set community_message_key "#dotlrn.clubs_pretty_name#"
             } else {
-                 set community_message_key "#dotlrn.My_Class#"
+                 set community_message_key "#dotlrn.dotlrn_class_instance_pretty_name#"
             }
 	    lappend tabs_list [list "$current_url" $community_message_key]
 	} 
@@ -134,7 +134,7 @@ namespace eval selva {
         set control_panel_name control-panel
 	set control_panel_url "$dotlrn_url/$control_panel_name"
            
-        if {[empty_string_p $community_id]} {
+        if { $community_id eq "" } {
             # We are not under a dotlrn community. However we could be
             # under /dotlrn (i.e. in the user's portal) or anywhere
             # else on the site
@@ -216,7 +216,7 @@ namespace eval selva {
 	    }
 	 }
 
-	if  {[regexp {dotlrn/(clubs|classes)/*} [ad_conn url]]} { 
+	if  { $community_id ne "" && $admin_p } {
 	    if {[string match "*/one-community-admin" [ad_conn url]]} {
 		append subnavbar "\n<li class=\"active\"><a href=\"${link}one-community-admin\">Admin</a></li>"
 	    } else {
