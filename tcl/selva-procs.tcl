@@ -57,7 +57,7 @@ namespace eval selva {
 	    if { $sw_admin_p } {
 		set admin_url "/acs-admin/"
 		set locale_admin_url "/acs-lang/admin"
-		set dotlrn_admin_url "/dotlrn/admin"
+		set dotlrn_admin_url "/dotlrn/admin/"
 	    } else {
 		set subsite_admin_p [permission::permission_p \
 					 -object_id [subsite::get_element -element object_id] \
@@ -79,7 +79,9 @@ namespace eval selva {
 
 	if { [exists_and_not_null community_id] } {
             set type [dotlrn_community::get_community_type_from_community_id $community_id]
-            if { $type eq "dotlrn_community" || $type eq "dotlrn_club" || $type eq "dotlrn_pers_community" } {
+            if { $type eq "dotlrn_community" || $type eq "dotlrn_pers_community" } {
+                 set community_message_key "#dotlrn.subcommunities_pretty_name#"
+            } elseif { $type eq "dotlrn_club" } {
                  set community_message_key "#dotlrn.clubs_pretty_name#"
             } else {
                  set community_message_key "#dotlrn.dotlrn_class_instance_pretty_name#"
@@ -100,9 +102,10 @@ namespace eval selva {
 	    set url [lindex $tab_entry 0]
 	    set name [lindex $tab_entry 1]
 	    ns_log Debug "URL:: $url"
+	    ns_log Debug "CURRENT URL:: $current_url"
 	    ns_log Debug "NAME:: $name"
 	    # if url is /dotlrn or /dotlrn/index we highlight the "Home" tab, otherwise we highlight the tab with the current_url, if there is one, i.e. we are not in a community
-	    if { $url == $current_url || ($url == "/dotlrn/" && $current_url == "/dotlrn/index")} {
+	    if { $url eq $current_url || ($url eq "/dotlrn/" && $current_url eq "/dotlrn/index")} {
 		append navbar "\n<li class=\"active\"><a href=\"$url\">"
 		#if {$picture != "null" } { append navbar "<img src=\"$picture\" alt=\"$picture\">" }
 		append navbar "[lang::util::localize $name]</a></li>"

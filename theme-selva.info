@@ -20,7 +20,7 @@
         <callbacks>
         </callbacks>
         <parameters>
-            <parameter datatype="string"  min_n_values="1"  max_n_values="1" name="AdditionalNavbarTabs"  default="/dotlrn/ #dotlrn.My_Workspace# /theme-selva/courses #dotlrn.Courses# /theme-selva/communities #dotlrn.Communities# /pvt/home #dotlrn.Preferences# /dotlrn/control-panel #dotlrn.control_panel#" description="list of URL Names pairs which will make it into additional navbar tabs"/>
+            <parameter datatype="string"  min_n_values="1"  max_n_values="1" name="AdditionalNavbarTabs"  default="/dotlrn/ #dotlrn.Home# /theme-selva/courses #dotlrn.Courses# /theme-selva/communities #dotlrn.Communities# /pvt/home #dotlrn.Preferences# /dotlrn/control-panel #dotlrn.control_panel#" description="list of URL Names pairs which will make it into additional navbar tabs"/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="communityCssUrl"  default="/resources/theme-selva/Selva/turquoise/Selva.css" description="default class css_url"/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="courseCssUrl"  default="/resources/theme-selva/Selva/green/Selva.css" description="default comunity css_url"/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="cssUrl"  default="/resources/theme-selva/Selva/default/Selva.css" description="default css_url"/>
