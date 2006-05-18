@@ -94,7 +94,7 @@ namespace eval selva {
 	}
 
 	if { $sw_admin_p } {
-	    lappend tabs_list [list "$dotlrn_admin_url" "#dotlrn.Administration_Cockpit#"]
+	    lappend tabs_list [list "$dotlrn_admin_url" "#dotlrn.Administration#"]
 	}
 
 	ns_log Debug "TABS" $tabs_list
