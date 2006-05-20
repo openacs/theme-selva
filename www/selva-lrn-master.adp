@@ -32,6 +32,6 @@
 
 <div id="portal-bottom"></div>
 <div class="footer">
-  <a href="http://www.dotlrn.org">.LRN Home</a> |
-  <a href="http://www.openacs.org/projects/dotlrn">.LRN Project Central</a> |
+  <a href="http://www.dotlrn.org">#theme-selva.dotlrn_Home#</a> |
+  <a href="http://www.openacs.org/projects/dotlrn">#theme-selva.dotlrn_Project_Central#</a>
 </div>

@@ -100,11 +100,11 @@
 <slave>
 
 <div class="footer">
-    <a href="/doc/theme-selva/">Selva theme theme</a> |
+    <a href="/doc/theme-selva/">#theme-selva.Selva_theme_documentation#</a> |
  <a href="http://validator.w3.org/check/referer">XHTML</a>,
  <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>,
  <a href="http://feedvalidator.org/check?url=@url@">RSS</a>,
- <a href="http://www.contentquality.com/mynewtester/cynthia.exe?Url1=@url@" title="Please note that no software can truly test your site for accessibility compliance.">508</a>.
+ <a href="http://www.contentquality.com/mynewtester/cynthia.exe?Url1=@url@" title="#theme-selva.accessibility_note#">508</a>
 </div>
 
 <if @curriculum_bar_p@ true>
