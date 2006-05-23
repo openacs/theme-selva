@@ -77,6 +77,14 @@ namespace eval selva {
 
 	set tabs_list [list]
 
+	foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalNavbarTabs" -default ""] {
+	    lappend tabs_list [list "$url" "$name"]
+	}
+
+	if { $sw_admin_p } {
+	    lappend tabs_list [list "$dotlrn_admin_url" "#dotlrn.Administration#"]
+	}
+
 	if { [exists_and_not_null community_id] } {
             set type [dotlrn_community::get_community_type_from_community_id $community_id]
             if { $type eq "dotlrn_community" || $type eq "dotlrn_pers_community" } {
@@ -88,14 +96,6 @@ namespace eval selva {
             }
 	    lappend tabs_list [list "$current_url" $community_message_key]
 	} 
-
-	foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalNavbarTabs" -default ""] {
-	    lappend tabs_list [list "$url" "$name"]
-	}
-
-	if { $sw_admin_p } {
-	    lappend tabs_list [list "$dotlrn_admin_url" "#dotlrn.Administration#"]
-	}
 
 	ns_log Debug "TABS" $tabs_list
 	foreach tab_entry $tabs_list {
