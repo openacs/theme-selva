@@ -29,5 +29,13 @@ ad_proc -public theme_selva::apm::after_upgrade {
                     "/dotlrn/ #dotlrn.Home# /theme-selva/courses #dotlrn.Courses# /theme-selva/communities #dotlrn.Communities# /dotlrn/control-panel #dotlrn.control_panel#" \
                     string 
 	}
+	    2.2.0b1 2.2.0b2 {     
+                apm_parameter_register \
+                    subgroupCssUrl \
+                    "default subgroup css_url" \
+                    theme-selva \
+                    "/resources/theme-selva/Selva/brown/Selva.css" \
+                    string 
+	}
     }
 }
