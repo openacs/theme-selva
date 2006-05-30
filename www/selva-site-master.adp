@@ -24,15 +24,16 @@
 -->
 </if>
 
-<if @is_logo_url@ not nil> 
-<!-- header (contains logo) -->
-<div id="header">
-<img src="@is_logo_url;noquote@" alt="Logo">
-</div>
-</if>
 <!-- Header -->
-<br>
 <div id="site-header">
+<if @is_logo_url@ not nil> 
+  <img src="@is_logo_url;noquote@" alt="Logo">
+</if>
+
+<div id="breadcrumbs">
+  <if @context_bar@ not nil>
+    @context_bar;noquote@
+  </if>
 
 <div id="status">
 <!-- memebers online -->
@@ -56,30 +57,7 @@
 
 </div> <!-- end of status -->
 
-<div id="breadcrumbs">
-<div id="context-bar">
-  <if @context_bar@ not nil>
-    <div id="breadcrumbs">@context_bar;noquote@</div>
-  </if>
-  <else>
-    <if @context:rowcount@ not nil>
-          <multiple name="context">
-            <if @context.url@ not nil>
-              <a href="@context.url@">@context.label@</a> &#187;
-            </if>
-            <else>
-              @context.label@
-            </else>
-          </multiple>
-    </if>
-  </else>
-  <div id="navlinks">@subnavbar_link;noquote@</div>
-  <div style="clear: both;"></div>
 </div>
-
-  </div> <!-- end of breadcrumbs -->
-  
-
   
 
 </div>
