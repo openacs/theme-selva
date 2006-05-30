@@ -250,13 +250,13 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 
 .leftColumn { 
         margin-right: 10% !important;
-              width: 35%;
+              width: 50%;
               vertical-align: top;
  }
 
 .rightColumn { 
         margin-right: 10% !important;
-              width: 65%;
+              width: 50%;
               vertical-align: top;
  }
 
