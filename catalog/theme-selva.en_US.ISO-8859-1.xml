@@ -4,7 +4,8 @@
   <msg key="Communities">Communities</msg>
   <msg key="ControlPanel">Control Panel</msg>
   <msg key="Courses">Courses</msg>
-  <msg key="Home">Home</msg>
+  <msg key="dotlrn_Home">.LRN Home</msg>
+  <msg key="dotlrn_Project_Central">.LRN Project Central</msg>
   <msg key="Logout">Logout</msg>
   <msg key="MySpace">My Space</msg>
   <msg key="online">online</msg>
