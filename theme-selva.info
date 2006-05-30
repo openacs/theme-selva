@@ -26,7 +26,7 @@
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="courseCssUrl"  default="/resources/theme-selva/Selva/green/Selva.css" description="default class css_url"/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="cssUrl"  default="/resources/theme-selva/Selva/default/Selva.css" description="default css_url"/>
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="isLogoActivated"  default="1" description="Boolean to display the logo or not"/>
-            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="logoUrl"  default="/resources/theme-selva/Selva/images/dotLRN-logo.gif" description="url for the logo"/>
+            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="logoUrl"  default="/resources/theme-selva/Selva/images/dotLRN-small-logo.gif" description="url for the logo"/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1" name="SmallTitleP"  default="0" description="This will take the title out from the prominent place on the top left, but add the name of community you are in as a special tab"/>
         </parameters>
 

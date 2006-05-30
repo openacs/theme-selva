@@ -34,7 +34,6 @@
 <br>
 <div id="site-header">
 
-	#theme-selva.You_are_here#:
 <div id="status">
 <!-- memebers online -->
 <div class="action-list users-online">

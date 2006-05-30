@@ -57,7 +57,7 @@ body {
 /* contains: logo and tagline (which is a background image) */	
 
 #header {
-	background: #F2F1CB url(images/bannerImage.jpg) no-repeat top left; }
+	background: #F2F1CB; }
 
 /* BREADCRUMBS and STATUS */
 /* contains: breadcrumns, user name, members online, login */
