@@ -77,7 +77,6 @@
 <slave>
 
 <div class="footer">
-    <a href="/doc/theme-selva/">#theme-selva.Selva_theme_documentation#</a> |
  <a href="http://validator.w3.org/check/referer">XHTML</a>,
  <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>,
  <a href="http://feedvalidator.org/check?url=@url@">RSS</a>,
