@@ -1,35 +1,0 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>.LRN &gt; MySpace</title><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><!-- Credits 	Software development:  the .LRN development community (www.dotlrn.org)	Release Management: 	Visual Design:  Dorian Petersend Credits --><style type="text/css"><!--@import url("/Selva/Selva.css");--></style></head><body><div id="wrapper"><!-- header (contains logo) --><div id="header"><img src="images/logo.gif"></div>
-
-
-<h1>/www/blank-master</h1>
-<ul>
-<li>Puts all Header stuff</li>
-<li>Calls /resources/acs-templating/htmlarea/htmlarea.css</li>
-<li>Javascript code from acs-templating and acs-subistes</li>
-<li>Conditionals for developer support and translator support</li>
-</ul>
- 
- 
-/www/site-master
-  - uses  blank-master
-  - puts bread crumbs, inner heading with members online, your account and logout
-  
-  <property name="header_stuff">
-    <link rel="stylesheet" type="text/css" href="@css_url@" media="all">
-    @header_stuff;noquote@
-  </property>
-  
-  - Adds a footer for change locale
-  
-/www/default-master
- - uses site-master
- - not used in .LRN
- 
-/packages/dotlrn/www/dotlrn-master
-  -uses site-master
-  -calls .LRN specific CSS
-  - starts with tabs
-  - slave is 'inside of portal'
-  
-  
-  <div id="footer">accessibility |  standards (xhtml, css, scorm, wrsl, etc.) | www.dotlrn.org</div></div><!-- end wrapper --></body></html>
