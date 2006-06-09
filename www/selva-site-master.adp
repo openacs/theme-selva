@@ -34,6 +34,18 @@
   <if @context_bar@ not nil>
     @context_bar;noquote@
   </if>
+  <else>
+    <if @context:rowcount@ not nil>
+          <multiple name="context">
+            <if @context.url@ not nil>
+              <a href="@context.url@">@context.label@</a> :
+            </if>
+            <else>
+              @context.label@
+            </else>
+          </multiple>
+    </if>
+  </else>
 
 <div id="status">
 <!-- memebers online -->
