@@ -284,16 +284,13 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	line-height:150%; }
 	
 .portlet ul {  
-	list-style:none;
-	list-style-position:outside;
-	padding-top:0px; 
-	display: inline; }
-	
+	padding-top:0px;
+	list-style-type:disc;)
+
 .portlet ul li{
-	margin-left: 10px;
-	padding-left: 15px;
-	background:url(images/bullet.gif) no-repeat 0 7px;  
-	padding-top:0px; }
+	margin-left: 5px;
+	padding-left: 10px;
+	padding-top:0px;}
 
 .button {
 	text-decoration: underline;
@@ -351,8 +348,7 @@ a.button:active {
   text-decoration: none;
   border: solid 1px black;
 }
-	
-	
+
 /* FOOTER */
 /* contains: links to standards compliance, dotlrnn.org, any license info  */
 
