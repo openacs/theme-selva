@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="theme-selva" package_version="0.7d5" locale="es_ES" charset="ISO-8859-1">
+<message_catalog package_key="theme-selva" package_version="2.2.0b2" locale="es_ES" charset="ISO-8859-1">
 
+  <msg key="accessibility_note">Notese que ningún software puede comprobar totalmente la accesibilidad de su sitio web</msg>
   <msg key="Communities">Comunidades</msg>
   <msg key="ControlPanel">Panel de Control</msg>
   <msg key="Courses">Cursos</msg>
+  <msg key="dotlrn_Home">Sitio web de .LRN</msg>
+  <msg key="dotlrn_Project_Central">Proyecto .LRN</msg>
   <msg key="Logout">Salir</msg>
   <msg key="MySpace">Mi Espacio</msg>
   <msg key="online">conectado</msg>
   <msg key="Preferences">Preferencias</msg>
+  <msg key="Selva_theme_documentation">Documentación del tema Selva</msg>
   <msg key="Tools">Herramientas</msg>
   <msg key="You_are_here">Está en</msg>
 </message_catalog>
