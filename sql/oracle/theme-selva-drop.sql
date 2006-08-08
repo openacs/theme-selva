@@ -1,27 +1,29 @@
-create function inline_0()
-returns integer as '
+-- packages/theme-selva/sql/oracle/theme-selva-drop.sql
+
 declare 
+
 	selva_site_template_id  dotlrn_site_templates.site_template_id%TYPE;
 	sloan_site_template_id  dotlrn_site_templates.site_template_id%TYPE;
 	selva_theme_id  portal_element_themes.theme_id%TYPE;
 	sloan_theme_id  portal_element_themes.theme_id%TYPE;
+
 begin
 
 	-- reverting selva site-templates to sloan
 
 	select site_template_id into selva_site_template_id
 		from dotlrn_site_templates
-		where pretty_name = ''Selva Theme'';
+		where pretty_name = 'Selva Theme';
 
 	select site_template_id into sloan_site_template_id
 		from dotlrn_site_templates
-		where pretty_name = ''#new-portal.sloan_theme_name#'';
+		where pretty_name = '#new-portal.sloan_theme_name#';
 
 	update apm_parameter_values 
         set attr_value = sloan_site_template_id
 		where parameter_id in ( select parameter_id 
 				from apm_parameters 
-				where (parameter_name = ''CommDefaultSiteTemplate_p'' or parameter_name = ''UserDefaultSiteTemplate_p'') and attr_value = selva_site_template_id);
+				where (parameter_name = 'CommDefaultSiteTemplate_p' or parameter_name = 'UserDefaultSiteTemplate_p') and attr_value = selva_site_template_id);
 
 	-- reverting to sloan for user/comm 
 
@@ -41,21 +43,16 @@ begin
 
 	select theme_id into selva_theme_id 
         from portal_element_themes 
-		where name = ''selva''; 
+		where name = 'selva'; 
 
 	select theme_id into sloan_theme_id 
         from portal_element_themes 
-		where name = ''#new-portal.sloan_theme_name#''; 
+		where name = '#new-portal.sloan_theme_name#'; 
 
 	update portals set theme_id = sloan_theme_id where theme_id = selva_theme_id;
 	delete from portal_element_themes WHERE theme_id = selva_theme_id;
-    perform acs_object__delete(selva_theme_id);
+    acs_object.del(selva_theme_id);
 
-	return sloan_site_template_id;
-
-end;' language 'plpgsql';
-
-select inline_0();
-
-drop function inline_0();
-
+end;
+/
+show errors;

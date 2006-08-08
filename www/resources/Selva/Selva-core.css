@@ -51,13 +51,13 @@ body {
 	}
 
 #wrapper {
-	margin: 20px 20px 20px 50px; }
+	margin: 5px 5px 5px 15px; }
 	
 /* HEADER */
 /* contains: logo and tagline (which is a background image) */	
 
 #header {
-	background: #F2F1CB url(images/bannerImage.jpg) no-repeat top left; }
+	background: #F2F1CB; }
 
 /* BREADCRUMBS and STATUS */
 /* contains: breadcrumns, user name, members online, login */
@@ -249,17 +249,30 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	padding-right: 30px;
 	display:inline;}
 
+.leftColumn { 
+        margin-right: 10% !important;
+              width: 50%;
+              vertical-align: top;
+ }
+
+.rightColumn { 
+        margin-right: 10% !important;
+              width: 50%;
+              vertical-align: top;
+ }
+
 .portlet-title h2 {
         color: #FFFFFF;
         font-size: 100%;
         padding-left:0px;
         padding-right:0px;
-        display:inline;}
+        display:inline;
+}
 
-
-.leftColumn .portlet-title {
+.portlet-title {
         margin-right: 10% !important;
 }   	
+
 .portlet-title img {
 	padding: 0 5px 0 5px;
 	text-align:right;}
@@ -272,23 +285,20 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	line-height:150%; }
 	
 .portlet ul {  
-	list-style:none;
-	list-style-position:outside;
-	padding-top:0px; 
-	display: inline; }
-	
+	padding-top:0px;
+	list-style-type:disc;)
+
 .portlet ul li{
-	margin-left: 10px;
-	padding-left: 15px;
-	background:url(images/bullet.gif) no-repeat 0 7px;  
-	padding-top:0px; }
+	margin-left: 5px;
+	padding-left: 10px;
+	padding-top:0px;}
 
 .button {
 	text-decoration: underline;
 	padding-right: 5px;
 	border-right: 1px solid #666666;
 }
-	
+
 /* Action Links*/
 
 .action-list { 
@@ -339,8 +349,7 @@ a.button:active {
   text-decoration: none;
   border: solid 1px black;
 }
-	
-	
+
 /* FOOTER */
 /* contains: links to standards compliance, dotlrnn.org, any license info  */
 

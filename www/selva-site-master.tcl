@@ -18,19 +18,18 @@ if { ![info exists header_stuff] } {
 if { [template::util::is_nil subnavbar_link] } {
     set subnavbar_link ""
 }
- 
-set community_id [dotlrn_community::get_community_id]
 
-if {[exists_and_not_null community_id]} {
-	set comm_type [dotlrn_community::get_community_type_from_community_id $community_id]
-	if {$comm_type == "dotlrn_club"} { 
-		set css_url [parameter::get_from_package_key -package_key "theme-selva" -parameter "communityCssUrl" -default "/resources/theme-selva/Selva/turquoise/Selva.css"]
-	} else {
-		set css_url [parameter::get_from_package_key -package_key "theme-selva" -parameter "courseCssUrl" -default "/resources/theme-selva/Selva/green/Selva.css"]
-	}
-    } else {
-	set css_url [parameter::get_from_package_key -package_key "theme-selva" -parameter "cssUrl" -default "/resources/theme-selva/Selva/default/Selva.css"]
-    }
+# DRB: Hack to ensure that subgroups keep the same color as their ultimate club or
+# class parent.  A top-level community that's not a class or club will keep the
+# top-level Selva colors.
+
+if { [string match /dotlrn/clubs/* [ad_conn url]] } {
+    set css_url [parameter::get_from_package_key -package_key "theme-selva" -parameter "communityCssUrl" -default "/resources/theme-selva/Selva/turquoise/Selva.css"]
+} elseif { [string match /dotlrn/classes/* [ad_conn url]] } {
+    set css_url [parameter::get_from_package_key -package_key "theme-selva" -parameter "courseCssUrl" -default "/resources/theme-selva/Selva/green/Selva.css"]
+} else {
+    set css_url [parameter::get_from_package_key -package_key "theme-selva" -parameter "cssUrl" -default "/resources/theme-selva/Selva/default/Selva.css"]
+}
 
 # Get system name
 set system_name [ad_system_name]

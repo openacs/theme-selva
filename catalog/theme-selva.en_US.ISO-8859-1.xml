@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="theme-selva" package_version="0.7d3" locale="en_US" charset="ISO-8859-1">
+<message_catalog package_key="theme-selva" package_version="2.2.0b2" locale="en_US" charset="ISO-8859-1">
 
   <msg key="Communities">Communities</msg>
   <msg key="ControlPanel">Control Panel</msg>
   <msg key="Courses">Courses</msg>
-  <msg key="Home">Home</msg>
+  <msg key="dotlrn_Home">.LRN Home</msg>
+  <msg key="dotlrn_Project_Central">.LRN Project Central</msg>
   <msg key="Logout">Logout</msg>
   <msg key="MySpace">My Space</msg>
   <msg key="online">online</msg>

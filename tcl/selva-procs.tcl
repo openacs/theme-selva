@@ -31,7 +31,7 @@ namespace eval selva {
     ad_proc -public portal_navbar {
 	
     } {
-	A helper procedure that generates the Subnavbar (above the portal navbar, ie the tabs)
+	A helper procedure that generates the Navbar, ie the tabs,
 	for dotlrn. It is called from the selva-master template.
     } {
 	set current_url [ad_conn url]
@@ -107,7 +107,8 @@ namespace eval selva {
 	    
 	}
 	
-	append subnavbar "\n</ul>"
+	append navbar "\n</ul>"
+
     }
 
     ad_proc -public portal_subnavbar {
@@ -118,7 +119,7 @@ namespace eval selva {
         {-pre_html ""}
         {-post_html ""}
     } {
-        A helper procedure that generates the PORTAL navbar (the thing
+        A helper procedure that generates the portal subnavbar (the thing
         with the portal pages on it) for dotlrn. It is called from the
         dotlrn-master template
     } {
@@ -128,15 +129,16 @@ namespace eval selva {
         set control_panel_name control-panel
 	set control_panel_url "$dotlrn_url/$control_panel_name"
            
-        if {[empty_string_p $community_id]} {
+        if { $community_id eq "" } {
             # We are not under a dotlrn community. However we could be
             # under /dotlrn (i.e. in the user's portal) or anywhere
             # else on the site
             set link "[dotlrn::get_url]/"
             
-            if {[dotlrn::user_p -user_id $user_id]} {
+            if {[dotlrn::user_p -user_id $user_id] &&
+                ($link eq [ad_conn url] || "${link}index" eq [ad_conn url]) } {
                 # this user is a dotlrn user, show their personal portal
-                # navbar, including the control panel link
+                # subnavbar, including the control panel link
                 set portal_id [dotlrn::get_portal_id -user_id $user_id]
                 set show_control_panel 1
             } else {
@@ -187,35 +189,37 @@ namespace eval selva {
             }
         }
 
-       #AG: This code belongs in the portal package, near portal::navbar.  For display reasons we need to do this
-	#as a ul instead of a table, which portal::navbar returns.  Obviously we shouldn't be letting display-level
+       #AG: This code belongs in the portal package, near portal::subnavbar.  For display reasons we need to do this
+	#as a ul instead of a table, which portal::subnavbar returns.  Obviously we shouldn't be letting display-level
 	#stuff decide where we put our code, but first we'll need to mod the portal package accordingly.
 
-	set page_num [ns_queryget page_num]
-	#Strip out extra anchors and other crud.
-	#page_num will be empty_string for special pages like
-	#My Space and Control Panel
-	regsub -all {[^0-9]} $page_num {} page_num
+	if { [catch {set page_num [ad_get_client_property dotlrn page_num]}] || $page_num eq "" || ![string is integer $page_num] } {
+	    set page_num [ns_queryget page_num]
+	    #Strip out extra anchors and other crud.
+	    #page_num will be empty_string for special pages like
+	    #My Space and Control Panel
+	    regsub -all {[^0-9]} $page_num {} page_num
+	}
 	
-	set navbar "<ul>\n"
+	set subnavbar "<ul>\n"
 	
 	db_foreach list_page_nums_select {} {
-	    #if { "$dotlrn_url/" == [ad_conn url] || "$dotlrn_url/index" == [ad_conn url]) && $sort_key == 0 && $page_num == ""} {
-		# active tab is  first tab and page_num may be ""
-		#append navbar "\n<li class=\"current\"><a href=\"#\">$pretty_name</a></li>"
-	     #} elseif {$page_num == $sort_key} {
-		 # We are looking at the active tab
-		# append navbar "\n<li class=\"current\"><a href=\"#\">$pretty_name</a></li>"
-	     #} else {
-		 append navbar "\n<li><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
-	     #}
+	    if {[string equal $page_num $sort_key]} {
+		append subnavbar "\n<li class=\"active\"><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
+	    } else {
+		append subnavbar "\n<li><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
+	    }
 	 }
 
-	if  {[regexp {dotlrn/(clubs|classes)/*} [ad_conn url]]} { 
-	    append navbar "\n<li><a href=\"one-community-admin\">Admin</a></li>"
+	if  { $community_id ne "" && $admin_p } {
+	    if {[string match "*/one-community-admin" [ad_conn url]]} {
+		append subnavbar "\n<li class=\"active\"><a href=\"${link}one-community-admin\">Admin</a></li>"
+	    } else {
+		append subnavbar "\n<li><a href=\"${link}one-community-admin\">Admin</a></li>"
+	    }
 	}
 
-	append navbar "</ul>"
+	append subnavbar "</ul>"
 
     }
 
