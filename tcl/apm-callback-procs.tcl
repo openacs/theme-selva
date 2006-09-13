@@ -17,17 +17,4 @@ ad_proc -public theme_selva::apm::after_upgrade {
     {-from_version_name:required}
     {-to_version_name:required}
 } {
-    apm_upgrade_logic \
-        -from_version_name $from_version_name \
-        -to_version_name $to_version_name \
-	-spec {  
-	    0.7d5 2.2.0b1 {     
-                apm_parameter_register \
-                    AdditionalNavbarTabs \
-                    "list of URL Names pairs which will make it into additional navbar tabs" \
-                    theme-selva \
-                    "/dotlrn/ #dotlrn.Home# /theme-selva/courses #dotlrn.Courses# /theme-selva/communities #dotlrn.Communities# /dotlrn/control-panel #dotlrn.control_panel#" \
-                    string 
-	}
-    }
 }
