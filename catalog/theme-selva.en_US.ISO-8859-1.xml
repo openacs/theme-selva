@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="theme-selva" package_version="2.2.0b2" locale="en_US" charset="ISO-8859-1">
+<message_catalog package_key="theme-selva" package_version="2.2.0" locale="en_US" charset="ISO-8859-1">
 
+  <msg key="accessibility_note">Note that no software can check completely the accessibility of your website.</msg>
   <msg key="Communities">Communities</msg>
   <msg key="ControlPanel">Control Panel</msg>
   <msg key="Courses">Courses</msg>
