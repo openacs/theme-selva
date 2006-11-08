@@ -12,5 +12,6 @@
   <msg key="online">conectado</msg>
   <msg key="Preferences">Preferencias</msg>
   <msg key="Tools">Herramientas</msg>
+  <msg key="website_logo">Logo del sitio web</msg>
   <msg key="You_are_here">Está en</msg>
 </message_catalog>
