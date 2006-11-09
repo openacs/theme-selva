@@ -8,7 +8,7 @@
             select pretty_name,
                    sort_key
             from portal_pages
-            where portal_id = :portal_id
+            where portal_id = :portal_id and hidden_p = 'f'
             order by sort_key
         </querytext>
     </fullquery>
