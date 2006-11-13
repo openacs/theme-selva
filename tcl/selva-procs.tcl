@@ -132,6 +132,7 @@ namespace eval selva {
         dotlrn-master template
     } {
                 
+ns_log Notice "Huh? in portal_subnavbar ..."
         set dotlrn_url [dotlrn::get_url]
         set community_id [dotlrn_community::get_community_id]
         set control_panel_name control-panel
@@ -144,7 +145,7 @@ namespace eval selva {
             set link "[dotlrn::get_url]/"
             
             if {[dotlrn::user_p -user_id $user_id] &&
-                ($link eq [ad_conn url] || "${link}index" eq [ad_conn url]) } {
+                [string first $link [ad_conn url]] != -1 } { 
                 # this user is a dotlrn user, show their personal portal
                 # subnavbar, including the control panel link
                 set portal_id [dotlrn::get_portal_id -user_id $user_id]
