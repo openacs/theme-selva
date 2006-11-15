@@ -76,13 +76,27 @@ namespace eval selva {
 	set navbar "<ul>"
 
 	set tabs_list [list]
+        set which_tab_selected 0
+        set which_tab 0
+        set home_tab -1
 
 	foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalNavbarTabs" -default ""] {
-	    lappend tabs_list [list "$url" "$name"]
+	    lappend tabs_list [list $url $name]
+            if { $current_url == $url } {
+                set which_tab_selected $which_tab
+            }
+            if { $name eq "#dotlrn.Home#" } {
+                set home_tab $which_tab
+            }
+            incr which_tab
 	}
 
 	if { $sw_admin_p } {
-	    lappend tabs_list [list "$dotlrn_admin_url" "#dotlrn.Administration#"]
+	    lappend tabs_list [list $dotlrn_admin_url #dotlrn.Administration#]
+            if { [string first $dotlrn_admin_url $current_url] != -1 } {
+                set which_tab_selected $which_tab
+            }
+            incr which_tab
 	}
 
 	if { [exists_and_not_null community_id] } {
@@ -95,24 +109,33 @@ namespace eval selva {
                  set community_message_key "#dotlrn.dotlrn_class_instance_pretty_name#"
             }
 	    lappend tabs_list [list "$current_url" $community_message_key]
+            set which_tab_selected $which_tab
+            incr which_tab
 	} 
 
+        # DRB: Presumably we don't care a lot if we lose track of the subnavbar
+        # after connection close.
+
+	ad_set_client_property -persistent f dotlrn home_tab_selected_p \
+            [expr { $which_tab_selected == $home_tab }]
+
 	ns_log Debug "TABS" $tabs_list
+
+        set which_tab 0
 	foreach tab_entry $tabs_list {
-	    set url [lindex $tab_entry 0]
-	    set name [lindex $tab_entry 1]
+            foreach {url name select_p} $tab_entry {}
 	    ns_log Debug "URL:: $url"
 	    ns_log Debug "CURRENT URL:: $current_url"
 	    ns_log Debug "NAME:: $name"
 	    # if url is /dotlrn or /dotlrn/index we highlight the "Home" tab, otherwise we highlight the tab with the current_url, if there is one, i.e. we are not in a community
-	    if { $url eq $current_url || ($url eq "/dotlrn/" && $current_url eq "/dotlrn/index")} {
+	    if { $which_tab == $which_tab_selected } {
 		append navbar "\n<li class=\"active\"><a href=\"$url\">"
 		#if {$picture != "null" } { append navbar "<img src=\"$picture\" alt=\"$picture\">" }
 		append navbar "[lang::util::localize $name]</a></li>"
 	    } else {
 		append navbar "\n<li><a href=\"$url\">[lang::util::localize $name]</a></li>"
 	    }
-	    
+	    incr which_tab 
 	}
 	
 	append navbar "\n</ul>"
@@ -132,7 +155,6 @@ namespace eval selva {
         dotlrn-master template
     } {
                 
-ns_log Notice "Huh? in portal_subnavbar ..."
         set dotlrn_url [dotlrn::get_url]
         set community_id [dotlrn_community::get_community_id]
         set control_panel_name control-panel
@@ -145,9 +167,9 @@ ns_log Notice "Huh? in portal_subnavbar ..."
             set link "[dotlrn::get_url]/"
             
             if {[dotlrn::user_p -user_id $user_id] &&
-                [string first $link [ad_conn url]] != -1 } { 
-                # this user is a dotlrn user, show their personal portal
-                # subnavbar, including the control panel link
+	        [ad_get_client_property dotlrn home_tab_selected_p] } {
+                # this user is a dotlrn user, we've selected the home tab,
+                # show their personal portal subnavbar, including the control panel link
                 set portal_id [dotlrn::get_portal_id -user_id $user_id]
                 set show_control_panel 1
             } else {
