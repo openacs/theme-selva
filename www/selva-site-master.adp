@@ -47,12 +47,12 @@
     </if>
   </else>
 
-<div id="status">
+<div id="site-master-personal-toolbar" class="personal-toolbar">
 <!-- memebers online -->
-<div class="action-list users-online">
-     <a href="@whos_online_url@">@num_users_online@ <if @num_users_online@ eq 1>member</if><else>members</else> #theme-selva.online#</a>
+<div class="personal-toolbar action-list">
+     <a href="@whos_online_url@" class="users-online">@num_users_online@ <if @num_users_online@ eq 1>member</if><else>members</else> #theme-selva.online#</a>
      <if @untrusted_user_id@ ne 0>
-      | <a href="@logout_url@" title="#acs-subsite.Logout_from_system#">#acs-subsite.Logout#</a>
+      | <a href="@logout_url@" title="#acs-subsite.Logout_from_system#" class="logout">#acs-subsite.Logout#</a>
     </if>
     <else>
       | <a href="/register/">#acs-subsite.Log_In#</a>
@@ -60,7 +60,7 @@
   </div>
 
 <!-- user greeting -->
-<div class="user-greeting">
+<div class="personal-toolbar user-greeting">
     <if @untrusted_user_id@ ne 0>
       #acs-subsite.Welcome_user#  |
     </if>
