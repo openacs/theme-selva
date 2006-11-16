@@ -76,7 +76,7 @@ namespace eval selva {
 	set navbar "<ul>"
 
 	set tabs_list [list]
-        set which_tab_selected 0
+        set which_tab_selected -1
         set which_tab 0
         set home_tab -1
 
@@ -113,8 +113,17 @@ namespace eval selva {
             incr which_tab
 	} 
 
-        # DRB: Presumably we don't care a lot if we lose track of the subnavbar
-        # after connection close.
+        # DRB: If we haven't found a tab to select, use the previous value if one
+        # exists, otherwise don't select any tab.  Don't write to the database for
+        # performance reasons.
+
+        if { $which_tab_selected == -1 } {
+            set which_tab_selected [ad_get_client_property dotlrn which_tab_selected]
+        } else {
+	    ad_set_client_property -persistent f dotlrn which_tab_selected $which_tab_selected
+        }
+
+        # DRB: Let the subnavbar proc know whether or not the home tab has been selected.
 
 	ad_set_client_property -persistent f dotlrn home_tab_selected_p \
             [expr { $which_tab_selected == $home_tab }]
@@ -127,7 +136,6 @@ namespace eval selva {
 	    ns_log Debug "URL:: $url"
 	    ns_log Debug "CURRENT URL:: $current_url"
 	    ns_log Debug "NAME:: $name"
-	    # if url is /dotlrn or /dotlrn/index we highlight the "Home" tab, otherwise we highlight the tab with the current_url, if there is one, i.e. we are not in a community
 	    if { $which_tab == $which_tab_selected } {
 		append navbar "\n<li class=\"active\"><a href=\"$url\">"
 		#if {$picture != "null" } { append navbar "<img src=\"$picture\" alt=\"$picture\">" }
