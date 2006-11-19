@@ -137,11 +137,11 @@ namespace eval selva {
 	    ns_log Debug "CURRENT URL:: $current_url"
 	    ns_log Debug "NAME:: $name"
 	    if { $which_tab == $which_tab_selected } {
-		append navbar "\n<li class=\"active\"><a href=\"$url\">"
+		append navbar "\n<li class=\"active\"><a href=\"$url\" title=\"[_ theme-selva.goto_tab_name]\">"
 		#if {$picture != "null" } { append navbar "<img src=\"$picture\" alt=\"$picture\">" }
 		append navbar "[lang::util::localize $name]</a></li>"
 	    } else {
-		append navbar "\n<li><a href=\"$url\">[lang::util::localize $name]</a></li>"
+		append navbar "\n<li><a href=\"$url\" title=\"[_ theme-selva.goto_tab_name]\">[lang::util::localize $name]</a></li>"
 	    }
 	    incr which_tab 
 	}
@@ -244,17 +244,17 @@ namespace eval selva {
 	
 	db_foreach list_page_nums_select {} {
 	    if {[string equal $page_num $sort_key]} {
-		append subnavbar "\n<li class=\"active\"><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
+		append subnavbar "\n<li class=\"active\"><a href=\"$link?page_num=$sort_key\" title=\"[_ theme-selva.goto_portal_page_pretty_name]\">$pretty_name</a> </li>"
 	    } else {
-		append subnavbar "\n<li><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
+		append subnavbar "\n<li><a href=\"$link?page_num=$sort_key\" title=\"[_ theme-selva.goto_portal_page_pretty_name]\">$pretty_name</a> </li>"
 	    }
 	 }
 
 	if  { $community_id ne "" && $admin_p } {
 	    if {[string match "*/one-community-admin" [ad_conn url]]} {
-		append subnavbar "\n<li class=\"active\"><a href=\"${link}one-community-admin\">Admin</a></li>"
+		append subnavbar "\n<li class=\"active\"><a href=\"${link}one-community-admin\" title=\"[_ theme-selva.goto_admin_page]\">Admin</a></li>"
 	    } else {
-		append subnavbar "\n<li><a href=\"${link}one-community-admin\">Admin</a></li>"
+		append subnavbar "\n<li><a href=\"${link}one-community-admin\" title=\"[_ theme-selva.goto_admin_page]\">Admin</a></li>"
 	    }
 	}
 

@@ -4,9 +4,12 @@
   <msg key="accessibility_note">Note that no software can check completely the accessibility of your website.</msg>
   <msg key="Communities">Communities</msg>
   <msg key="ControlPanel">Control Panel</msg>
-  <msg key="Courses">Courses</msg>
+  <msg key="Courses">Classes</msg>
   <msg key="dotlrn_Home">.LRN Home</msg>
   <msg key="dotlrn_Project_Central">.LRN Project Central</msg>
+  <msg key="goto_admin_page">Go to Admin page</msg>
+  <msg key="goto_portal_page_pretty_name">Go to %pretty_name% page</msg>
+  <msg key="goto_tab_name">Go to %name%</msg>
   <msg key="Logout">Logout</msg>
   <msg key="MySpace">My Space</msg>
   <msg key="online">online</msg>
