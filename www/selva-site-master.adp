@@ -50,7 +50,7 @@
 <div id="site-master-personal-toolbar" class="personal-toolbar">
 <!-- memebers online -->
 <div class="personal-toolbar action-list">
-     <a href="@whos_online_url@" class="users-online">@num_users_online@ <if @num_users_online@ eq 1>member</if><else>members</else> #theme-selva.online#</a>
+     <a href="@whos_online_url@" title="#acs-subsite.Whos_Online_link_label#" class="users-online">@num_users_online@ <if @num_users_online@ eq 1>#acs-subsite.Member#</if><else>#acs-subsite.Members#</else> #theme-selva.online#</a>
      <if @untrusted_user_id@ ne 0>
       | <a href="@logout_url@" title="#acs-subsite.Logout_from_system#" class="logout">#acs-subsite.Logout#</a>
     </if>
