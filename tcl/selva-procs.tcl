@@ -35,6 +35,7 @@ namespace eval selva {
 	for dotlrn. It is called from the selva-master template.
     } {
 	set current_url [ad_conn url]
+        set dotlrn_url [dotlrn::get_url]
 
 	# Set up some basic stuff
 	set community_id [dotlrn_community::get_community_id]
@@ -57,7 +58,7 @@ namespace eval selva {
 	    if { $sw_admin_p } {
 		set admin_url "/acs-admin/"
 		set locale_admin_url "/acs-lang/admin"
-		set dotlrn_admin_url "/dotlrn/admin/"
+		set dotlrn_admin_url "${dotlrn_url}/admin/"
 	    } else {
 		set subsite_admin_p [permission::permission_p \
 					 -object_id [subsite::get_element -element object_id] \
@@ -82,7 +83,8 @@ namespace eval selva {
 
 	foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalNavbarTabs" -default ""] {
 	    lappend tabs_list [list $url $name]
-            if { $current_url == $url } {
+            if { $current_url == $url ||
+                 $current_url == "$dotlrn_url/index" && $name eq "#dotlrn.Home#" } {
                 set which_tab_selected $which_tab
             }
             if { $name eq "#dotlrn.Home#" } {
