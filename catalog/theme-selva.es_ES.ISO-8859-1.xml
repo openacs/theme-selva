@@ -7,6 +7,9 @@
   <msg key="Courses">Cursos</msg>
   <msg key="dotlrn_Home">Sitio web de .LRN</msg>
   <msg key="dotlrn_Project_Central">Proyecto .LRN</msg>
+  <msg key="goto_admin_page">Ir a la página de administración</msg>
+  <msg key="goto_portal_page_pretty_name">Ir a %pretty_name%</msg>
+  <msg key="goto_tab_name">Ir a %name%</msg>
   <msg key="Logout">Salir</msg>
   <msg key="MySpace">Mi Espacio</msg>
   <msg key="online">conectado</msg>
