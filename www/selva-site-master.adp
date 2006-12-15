@@ -27,7 +27,7 @@
 <!-- Header -->
 <div id="site-header">
 <if @is_logo_url@ not nil> 
-  <img src="@is_logo_url;noquote@" alt="Logo">
+  <img src="@is_logo_url;noquote@" alt="#theme-selva.website_logo#">
 </if>
 
 	#theme-selva.You_are_here#:
@@ -71,14 +71,12 @@
     </if>
   </else>
 
-  </div> <!-- end of breadcrumbs -->
-  
-<div id="status">
+<div id="site-master-personal-toolbar" class="personal-toolbar">
 <!-- memebers online -->
-<div class="action-list users-online">
-     <a href="@whos_online_url@">@num_users_online@ <if @num_users_online@ eq 1>member</if><else>members</else> #theme-selva.online#</a>
+<div class="personal-toolbar action-list">
+     <a href="@whos_online_url@" title="#acs-subsite.Whos_Online_link_label#" class="users-online">@num_users_online@ <if @num_users_online@ eq 1>#acs-subsite.Member#</if><else>#acs-subsite.Members#</else> #theme-selva.online#</a>
      <if @untrusted_user_id@ ne 0>
-      | <a href="@logout_url@" title="#acs-subsite.Logout_from_system#">#acs-subsite.Logout#</a>
+      | <a href="@logout_url@" title="#acs-subsite.Logout_from_system#" class="logout">#acs-subsite.Logout#</a>
     </if>
     <else>
       | <a href="/register/">#acs-subsite.Log_In#</a>
@@ -86,7 +84,7 @@
   </div>
 
 <!-- user greeting -->
-<div class="user-greeting">
+<div class="personal-toolbar user-greeting">
     <if @untrusted_user_id@ ne 0>
       #acs-subsite.Welcome_user#  |
     </if>

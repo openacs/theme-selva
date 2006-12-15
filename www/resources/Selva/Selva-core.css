@@ -1,5 +1,5 @@
 /* Stylesheet for the Selva default look and feel */
-/* Credits 
+/* Credits
 	Software development:  the .LRN development community (www.dotlrn.org)
 	Release Management: 
 	Visual Design:  Dorian Peters
@@ -11,8 +11,8 @@ end Credits */
 
 body { 
 	background: #F2F1CB; 
-	font: 75%/120% "Trebuchet MS", "Lucida Grande", Arial, sans-serif !important;
-	font: 80%/120% "Lucida Grande", Verdana, Arial, sans-serif;
+	font: 75%/120% "Trebuchet MS", "Lucida Grande", Arial, sans-serif ;
+	/* font: 80%/120% "Lucida Grande", Verdana, Arial, sans-serif !ie; */
 	color: #333333; 
 	margin: 0;
 	padding: 0;}
@@ -59,39 +59,50 @@ body {
 #header {
 	background: #F2F1CB; }
 
+#site-header {
+	height: 50px;
+	 }
+#header-wrapper {
+	clear: none;
+	}
+#logo {float: left; padding:2pt; }
+
 /* BREADCRUMBS and STATUS */
 /* contains: breadcrumns, user name, members online, login */
 
 #breadcrumbs {
+	clear: right;
 	background: #F2F1CB;
 	text-align: left;
 	font-size: 100%;}
 	
-	#status {
-	text-align: right;
-	margin-top: -13px;
+#site-master-personal-toolbar {
 	}
 
-	
-	#status .users-online {
-	float:right;
-	padding-right: 2em;
-	}
-	
-	#status .user-greeting {
+#site-master-personal-toolbar .personal-toolbar {
+	float: right;
 	display:inline;
-  	padding-right: 0.4em;
+  	padding-right: 0.4em;}
+
+#site-master-personal-toolbar .user-greeting { 
 	}
 	
-	#status .permanent-navigation {
-	padding-right: 2em;
-	float:right;
+#site-master-personal-toolbar .toolbar-link {
+	}
+
+#site-master-personal-toolbar a.users-online {
+	}
+
+#site-master-personal-toolbar a.logout { 
+	}
+
+#personal-toolbar .permanent-navigation {
 	}
 
 #youarehere 	{
+                margin-top: 5px;
 		color: #555555;
 		font-size: 150%;
-		padding:15px 0px 8px 0px;
 		font-weight:bold;
 		}	
 		
@@ -99,27 +110,27 @@ body {
 /* contains: all portlets, main navigation, sub navigation etc. */
 	
 #portal-navigation {
-	margin-top:-10px !important;
-		margin-top:5px;
+	margin-top:-10px ;
+		margin-top:5px !ie;
 	background: #F2F1CB;
 	font-size: 110%;
-	margin-bottom: -8px !important;
-		margin-bottom: -14px; 
+	margin-bottom: -8px ;
+		margin-bottom: -14px !ie; 
 	clear:both;}
 	
 #portal-navigation ul {
-	margin-left: -20px !important;
-		margin-left: 15px; }
+	margin-left: -20px ;
+		margin-left: 15px !ie; }
 
 	#portal-navigation li {
 	color: #FFFFFF;
 	display: inline;
 	list-style: none;
 	background: #999999 url(images/tab_right.gif) no-repeat top right;
-	padding: 10px 10px 6px 0px !important;
-        padding: 0px 0px 0px 0px;
-	margin:0px !important;
-		margin: 0px 2px 0px 2px;}
+	padding: 10px 10px 6px 0px ;
+        padding: 0px 0px 0px 0px !ie;
+	margin:0px ;
+		margin: 0px 2px 0px 2px !ie;}
 
 	#portal-navigation li a {
 	color: #FFFFFF;
@@ -153,8 +164,8 @@ body {
 	
 	#portal-subnavigation-links ul {
  	display: inline; 
-	margin-left: -25px !important;
-	margin-left: 10px; }
+	margin-left: -25px ;
+	margin-left: 10px !ie; }
 	
 	#portal-subnavigation-links li {
  	display: inline;
@@ -195,8 +206,8 @@ body {
 	padding-top: 10px;
 	padding-left: 15px;
 	padding-right: 15px;
-	margin-right: 2px !important; 
-		margin-right: 1px; }
+	margin-right: 2px ; 
+		margin-right: 1px !ie; }
 	
 	#left-column {
 	float: left; 
@@ -217,9 +228,7 @@ body {
 	background:  #F2F1CB; 
 	margin-top: 0px;
 	border-bottom: 1px solid #999999;}
-	
 
-	
 /* PORTLETS */
 /* contains: all general portlet styles like title, frame, font etc. */
 /* Note: additional styles for specific packages (ie. calendar, survey) 
@@ -235,11 +244,11 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	background: #98c472 url(images/portlet_titleCorner.gif) no-repeat top right;
 	text-align:left;
 	padding: 4px 15px 3px 6px; 
-	margin-right:30% !important;
-		margin-right:8%;
+	margin-right:30% ;
+		margin-right:8% !ie;
 	margin-left:12px;
-	margin-bottom:-1px !important;
-		margin-bottom:0px;
+	margin-bottom:-1px ;
+		margin-bottom:0px !ie;
 	font-weight:bold;}
 	
 .portlet-title span {
@@ -250,14 +259,14 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	display:inline;}
 
 .leftColumn { 
-        margin-right: 10% !important;
-              width: 50%;
+        margin-right: 10%;
+              width: 50% !ie;
               vertical-align: top;
  }
 
 .rightColumn { 
-        margin-right: 10% !important;
-              width: 50%;
+        margin-right: 10% ;
+              width: 50% !ie;
               vertical-align: top;
  }
 
@@ -270,7 +279,7 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 }
 
 .portlet-title {
-        margin-right: 10% !important;
+        margin-right: 10% ;
 }   	
 
 .portlet-title img {
@@ -286,7 +295,7 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	
 .portlet ul {  
 	padding-top:0px;
-	list-style-type:disc;)
+	list-style-type:disc; }
 
 .portlet ul li{
 	margin-left: 5px;
@@ -370,5 +379,6 @@ a:hover div#listlink {
 	display:block;
 }
 
-	
+
+
 	

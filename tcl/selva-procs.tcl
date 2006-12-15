@@ -35,6 +35,7 @@ namespace eval selva {
 	for dotlrn. It is called from the selva-master template.
     } {
 	set current_url [ad_conn url]
+        set dotlrn_url [dotlrn::get_url]
 
 	# Set up some basic stuff
 	set community_id [dotlrn_community::get_community_id]
@@ -57,7 +58,7 @@ namespace eval selva {
 	    if { $sw_admin_p } {
 		set admin_url "/acs-admin/"
 		set locale_admin_url "/acs-lang/admin"
-		set dotlrn_admin_url "/dotlrn/admin"
+		set dotlrn_admin_url "${dotlrn_url}/admin/"
 	    } else {
 		set subsite_admin_p [permission::permission_p \
 					 -object_id [subsite::get_element -element object_id] \
@@ -73,38 +74,82 @@ namespace eval selva {
 	    set user_name {}
 	}
 	
-	set subnavbar "<ul>"
+	set navbar "<ul>"
 
 	set tabs_list [list]
+        set which_tab_selected -1
+        set which_tab 0
+        set home_tab -1
 
 	set small_title_p [parameter::get_from_package_key -package_key "theme-selva" -parameter "SmallTitleP" -default "0"]
 	if {[exists_and_not_null community_id] && $small_title_p} {
 	    lappend tabs_list [list "$current_url" [dotlrn_community::get_community_name $community_id]]
 	} 
 
-	foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalSubnavbarTabs" -default ""] {
-	    lappend tabs_list [list "$url" "$name"]
+	foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalNavbarTabs" -default ""] {
+	    lappend tabs_list [list $url $name]
+            if { $current_url == $url ||
+                 $current_url == "$dotlrn_url/index" && $name eq "#dotlrn.Home#" } {
+                set which_tab_selected $which_tab
+            }
+            if { $name eq "#dotlrn.Home#" } {
+                set home_tab $which_tab
+            }
+            incr which_tab
 	}
 
 	if { $sw_admin_p } {
-	    lappend tabs_list [list "$dotlrn_admin_url" "#dotlrn.Administration_Cockpit#"]
+	    lappend tabs_list [list $dotlrn_admin_url #dotlrn.Administration#]
+            if { [string first $dotlrn_admin_url $current_url] != -1 } {
+                set which_tab_selected $which_tab
+            }
+            incr which_tab
 	}
 
+	if { [exists_and_not_null community_id] } {
+            set type [dotlrn_community::get_community_type_from_community_id $community_id]
+            if { $type eq "dotlrn_community" || $type eq "dotlrn_pers_community" } {
+                 set community_message_key "#dotlrn.subcommunities_pretty_name#"
+            } elseif { $type eq "dotlrn_club" } {
+                 set community_message_key "#dotlrn.clubs_pretty_name#"
+            } else {
+                 set community_message_key "#dotlrn.dotlrn_class_instance_pretty_name#"
+            }
+	    lappend tabs_list [list "$current_url" $community_message_key]
+            set which_tab_selected $which_tab
+            incr which_tab
+	} 
+
+        # DRB: If we haven't found a tab to select, use the previous value if one
+        # exists, otherwise don't select any tab.  Don't write to the database for
+        # performance reasons.
+
+        if { $which_tab_selected == -1 } {
+            set which_tab_selected [ad_get_client_property dotlrn which_tab_selected]
+        } else {
+	    ad_set_client_property -persistent f dotlrn which_tab_selected $which_tab_selected
+        }
+
+        # DRB: Let the subnavbar proc know whether or not the home tab has been selected.
+
+	ad_set_client_property -persistent f dotlrn home_tab_selected_p \
+            [expr { $which_tab_selected == $home_tab }]
+
 	ns_log Debug "TABS" $tabs_list
+
+        set which_tab 0
 	foreach tab_entry $tabs_list {
-	    set url [lindex $tab_entry 0]
-	    set name [lindex $tab_entry 1]
+            foreach {url name select_p} $tab_entry {}
 	    ns_log Debug "URL:: $url"
 	    ns_log Debug "NAME:: $name"
-	    # if url is /dotlrn or /dotlrn/index we highlight the "Home" tab, otherwise we highlight the tab with the current_url, if there is one, i.e. we are not in a community
-	    if { $url == $current_url || ($url == "/dotlrn/" && $current_url == "/dotlrn/index")} {
-		append subnavbar "\n<li class=\"active\"><a href=\"$url\">"
-		#if {$picture != "null" } { append subnavbar "<img src=\"$picture\" alt=\"$picture\">" }
-		append subnavbar "[lang::util::localize $name]</a></li>"
+	    if { $which_tab == $which_tab_selected } {
+		append navbar "\n<li class=\"active\"><a href=\"$url\" title=\"[_ theme-selva.goto_tab_name]\">"
+		#if {$picture != "null" } { append navbar "<img src=\"$picture\" alt=\"$picture\">" }
+		append navbar "[lang::util::localize $name]</a></li>"
 	    } else {
-		append subnavbar "\n<li><a href=\"$url\">[lang::util::localize $name]</a></li>"
+		append navbar "\n<li><a href=\"$url\" title=\"[_ theme-selva.goto_tab_name]\">[lang::util::localize $name]</a></li>"
 	    }
-	    
+	    incr which_tab 
 	}
 	
 	append navbar "\n</ul>"
@@ -136,9 +181,9 @@ namespace eval selva {
             set link "[dotlrn::get_url]/"
             
             if {[dotlrn::user_p -user_id $user_id] &&
-                ($link eq [ad_conn url] || "${link}index" eq [ad_conn url]) } {
-                # this user is a dotlrn user, show their personal portal
-                # subnavbar, including the control panel link
+	        [ad_get_client_property dotlrn home_tab_selected_p] } {
+                # this user is a dotlrn user, we've selected the home tab,
+                # show their personal portal subnavbar, including the control panel link
                 set portal_id [dotlrn::get_portal_id -user_id $user_id]
                 set show_control_panel 1
             } else {
@@ -205,17 +250,17 @@ namespace eval selva {
 	
 	db_foreach list_page_nums_select {} {
 	    if {[string equal $page_num $sort_key]} {
-		append subnavbar "\n<li class=\"active\"><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
+		append subnavbar "\n<li class=\"active\"><a href=\"$link?page_num=$sort_key\" title=\"[_ theme-selva.goto_portal_page_pretty_name]\">$pretty_name</a> </li>"
 	    } else {
-		append subnavbar "\n<li><a href=\"$link?page_num=$sort_key\">$pretty_name</a> </li>"
+		append subnavbar "\n<li><a href=\"$link?page_num=$sort_key\" title=\"[_ theme-selva.goto_portal_page_pretty_name]\">$pretty_name</a> </li>"
 	    }
 	 }
 
 	if  { $community_id ne "" && $admin_p } {
 	    if {[string match "*/one-community-admin" [ad_conn url]]} {
-		append subnavbar "\n<li class=\"active\"><a href=\"${link}one-community-admin\">Admin</a></li>"
+		append subnavbar "\n<li class=\"active\"><a href=\"${link}one-community-admin\" title=\"[_ theme-selva.goto_admin_page]\">Admin</a></li>"
 	    } else {
-		append subnavbar "\n<li><a href=\"${link}one-community-admin\">Admin</a></li>"
+		append subnavbar "\n<li><a href=\"${link}one-community-admin\" title=\"[_ theme-selva.goto_admin_page]\">Admin</a></li>"
 	    }
 	}
 
