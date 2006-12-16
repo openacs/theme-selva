@@ -30,31 +30,7 @@
   <img src="@is_logo_url;noquote@" alt="#theme-selva.website_logo#">
 </if>
 
-	#theme-selva.You_are_here#:
-<div id="status">
-<!-- memebers online -->
-<div class="action-list users-online">
-     <a href="@whos_online_url@">@num_users_online@ <if @num_users_online@ eq 1>member</if><else>members</else> #theme-selva.online#</a>
-     <if @untrusted_user_id@ ne 0>
-      | <a href="@logout_url@" title="#acs-subsite.Logout_from_system#">#acs-subsite.Logout#</a>
-    </if>
-    <else>
-      | <a href="/register/">#acs-subsite.Log_In#</a>
-    </else>
-  </div>
-
-<!-- user greeting -->
-<div class="user-greeting">
-    <if @untrusted_user_id@ ne 0>
-      #acs-subsite.Welcome_user#  |
-    </if>
-  </div>
-
-
-</div> <!-- end of status -->
-
 <div id="breadcrumbs">
-<div id="context-bar">
   <if @context_bar@ not nil>
     @context_bar;noquote@
   </if>
