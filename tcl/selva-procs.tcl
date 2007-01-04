@@ -81,11 +81,6 @@ namespace eval selva {
         set which_tab 0
         set home_tab -1
 
-	set small_title_p [parameter::get_from_package_key -package_key "theme-selva" -parameter "SmallTitleP" -default "0"]
-	if {[exists_and_not_null community_id] && $small_title_p} {
-	    lappend tabs_list [list "$current_url" [dotlrn_community::get_community_name $community_id]]
-	} 
-
 	foreach {url name} [parameter::get_from_package_key -package_key "theme-selva" -parameter "AdditionalNavbarTabs" -default ""] {
 	    lappend tabs_list [list $url $name]
             if { $current_url == $url ||
@@ -115,7 +110,14 @@ namespace eval selva {
             } else {
                  set community_message_key "#dotlrn.dotlrn_class_instance_pretty_name#"
             }
-	    lappend tabs_list [list "$current_url" $community_message_key]
+
+		if { [parameter::get_from_package_key -package_key "theme-selva" -parameter "SmallTitleP" -default "0"] } {
+			# show title of the community instead of community type
+			# pretty name
+			set community_message_key [dotlrn_community::get_community_name $community_id]
+		} 
+
+	    lappend tabs_list [list [dotlrn_community::get_community_url $community_id] $community_message_key]
             set which_tab_selected $which_tab
             incr which_tab
 	} 
