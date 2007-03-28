@@ -1,4 +1,4 @@
-<master src="/www/blank-master">
+<master src="/www/blank-compat">
   <if @title@ not nil>
     <property name="title">@title;noquote@</property>
   </if>
