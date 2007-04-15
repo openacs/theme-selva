@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message_catalog package_key="theme-selva" package_version="2.3.0a2" locale="el_GR" charset="utf-8">
+
+  <msg key="accessibility_note">Έχετε υπόψη πως κανένα λογισμικό δεν μπορεί να ελέγξει πλήρως την προσβασιμότητα ενός ιστοχώρου.</msg>
+  <msg key="Communities">Κοινότητες</msg>
+  <msg key="dotlrn_Home">Αρχική .LRN</msg>
+  <msg key="dotlrn_Project_Central">.LRN κεντρική σελίδα του έργου</msg>
+  <msg key="goto_admin_page">Μετάβαση στη σελίδα διαχείρισης</msg>
+  <msg key="goto_portal_page_pretty_name">Go to %pretty_name% page</msg>
+  <msg key="goto_tab_name">Μετάβαση προς %name%</msg>
+  <msg key="MySpace">Ο χώρος μου</msg>
+  <msg key="online">συνδεμένα</msg>
+  <msg key="website_logo">Λογότυπο</msg>
+</message_catalog>
