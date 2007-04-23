@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<message_catalog package_key="theme-selva" package_version="2.3.0a2" locale="el_GR" charset="utf-8">
+<message_catalog package_key="theme-selva" package_version="2.3.0" locale="el_GR" charset="utf-8">
 
   <msg key="accessibility_note">Έχετε υπόψη πως κανένα λογισμικό δεν μπορεί να ελέγξει πλήρως την προσβασιμότητα ενός ιστοχώρου.</msg>
   <msg key="Communities">Κοινότητες</msg>
