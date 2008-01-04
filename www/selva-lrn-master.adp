@@ -1,7 +1,5 @@
 <master src="/packages/theme-selva/www/selva-site-master">
-  <property name="header_stuff">
-    @header_stuff;noquote@
-  </property>
+  <if @doc@ defined><property name="&doc">doc</property></if>
   <if @context@ not nil><property name="context">@context;noquote@</property></if>
     <else><if @context_bar@ not nil><property name="context_bar">@context_bar;noquote@</property></if></else>
   <if @focus@ not nil><property name="focus">@focus;noquote@</property></if>

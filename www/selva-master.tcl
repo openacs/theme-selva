@@ -9,16 +9,12 @@ if {![exists_and_not_null displayed_object_id]} {
     set displayed_object_id ""
 }
 
-if {![exists_and_not_null title]} {
-    set title ""
+if {[exists_and_not_null title]} {
+    set doc(title) $title
 }
 
 if {![exists_and_not_null context]} {
     set context ""
-}
-
-if {![exists_and_not_null header_stuff]} {
-    set header_stuff ""
 }
 
 set dotlrn_installed_p [apm_package_installed_p dotlrn]

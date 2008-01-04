@@ -290,40 +290,10 @@ if { $make_navbar_p } {
 }
 
 
-if { ![info exists header_stuff] } {
-    set header_stuff ""
-}
-
 if { [info exists text] } {
     set text [lang::util::localize $text]
 }
 
-
-# Focus
-multirow create attribute key value
-
-if { ![template::util::is_nil focus] } {
-    # Handle elements wohse name contains a dot
-    if { [regexp {^([^.]*)\.(.*)$} $focus match form_name element_name] } {
-
-        # Add safety code to test that the element exists '
-        set header_stuff "$header_stuff
-          <script language=\"JavaScript\" type=\"text/javascript\">
-            function acs_focus( form_name, element_name ){
-                if (document.forms == null) return;
-                if (document.forms\[form_name\] == null) return;
-                if (document.forms\[form_name\].elements\[element_name\] == null) return;
-                if (document.forms\[form_name\].elements\[element_name\].type == 'hidden') return;
-
-                document.forms\[form_name\].elements\[element_name\].focus();
-            }
-          </script>
-        "
-        
-        template::multirow append \
-                attribute onload "javascript:acs_focus('${form_name}', '${element_name}')"
-    }
-}
 
 # Developer-support support
 set ds_enabled_p [parameter::get_from_package_key \
@@ -354,7 +324,4 @@ set lang_admin_p [permission::permission_p \
                       -privilege admin \
                       -party_id [ad_conn untrusted_user_id]]
 set toggle_translator_mode_url [export_vars -base "${acs_lang_url}admin/translator-mode-toggle" { { return_url [ad_return_url] } }]
-
-# Curriculum bar
-set curriculum_bar_p [llength [site_node::get_children -all -filters { package_key "curriculum" } -node_id $community_id]]
 

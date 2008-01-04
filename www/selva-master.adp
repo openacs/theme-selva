@@ -4,10 +4,9 @@
 <else>
 	<master src="/packages/theme-selva/www/selva-site-master">
 </else>
-  <property name="title">@title;noquote@</property>
+  <if @doc@ defined><property name="&doc">doc</property></if>
   <property name="context">@context;noquote@</property>
   <property name="displayed_object_id">@displayed_object_id@</property>
-  <property name="header_stuff">@header_stuff;noquote@</property>
   <if @focus@ not nil><property name="focus">@focus;noquote@</property></if>
 
 <slave>

@@ -1,19 +1,11 @@
-<master src="/www/blank-compat">
-  <if @title@ not nil>
-    <property name="title">@title;noquote@</property>
-  </if>
+<master src="/www/blank-master">
+  <if @doc@ defined><property name="&doc">doc</property></if>
   <if @signatory@ not nil>
     <property name="signatory">@signatory;noquote@</property>
   </if>
   <if @focus@ not nil>
     <property name="focus">@focus;noquote@</property>
   </if>
-  <property name="header_stuff">
-    <link rel="shortcut icon" href="/resources/theme-selva/Selva/default/images/myicon.ico">
-    <link rel="stylesheet" type="text/css" href="@css_url@" media="all">
-    
-    @header_stuff;noquote@
-  </property>
 
   
 <div id="wrapper">

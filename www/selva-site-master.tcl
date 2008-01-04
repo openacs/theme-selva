@@ -11,10 +11,6 @@ if { ![info exists section] } {
     set section {}
 }
 
-if { ![info exists header_stuff] } {
-    set header_stuff {}
-}
-
 if { [template::util::is_nil subnavbar_link] } {
     set subnavbar_link ""
 }
@@ -119,3 +115,6 @@ set error_messages "bla : "
 if {[parameter::get_from_package_key -package_key "theme-selva" -parameter "isLogoActivated" -default "1"] == 1} {
 	set is_logo_url [parameter::get_from_package_key -package_key "theme-selva" -parameter "logoUrl" -default "/resources/theme-selva/Selva/default/images/logo.gif"]
 }
+
+template::head::add_link -rel "shortcut icon" -href "/resources/theme-selva/Selva/default/images/myicon.ico"
+template::head::add_css -href $css_url
