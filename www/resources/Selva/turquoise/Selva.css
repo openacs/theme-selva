@@ -67,7 +67,7 @@ end Credits */
 are located in the css for that package (eg. Selva_calendar.css)  */
 
 	
-.portlet-title {
+.portlet-title, .portlet-title {
 	position:relative;
 	left:0px;
 	top:0px;
@@ -81,14 +81,14 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 		margin-bottom:0px;
 	font-weight:bold;}
 	
-.portlet-title span {
+.portlet-title span, .portlet-title-no-controls span {
 	color: #FFFFFF;
 	font-size: 120%;
 	padding-left:20px;
 	padding-right: 30px;
 	display:inline;}
 	
-.portlet-title img {
+.portlet-title img, .portlet-title-no-controls img {
 	padding: 0 5px 0 5px;
 	text-align:right;}
 	

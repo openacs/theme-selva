@@ -193,7 +193,7 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 .portlet-wrapper {
 	margin: 20px;}
 	
-.portlet-title {
+.portlet-title, .portlet-title-no-controls {
 	position:relative;
 	left:0px;
 	top:0px;
@@ -203,14 +203,14 @@ are located in the css for that package (eg. Selva_calendar.css)  */
 	margin-right:30%;
 	margin-left:10%;}
 	
-.portlet-title span {
+.portlet-title span, .portlet-title-no-controls span {
 	color: #FFFFFF;
 	font-size: 130%;
 	padding-left:20px;
 	padding-right: 30px;
 	display:inline;}
 	
-.portlet-title img {
+.portlet-title img, .portlet-title-no-controls img {
 	padding: 0 5px 0 5px;
 	text-align:right;}
 	
