@@ -8,14 +8,14 @@
     <singleton-p>f</singleton-p>
     <auto-mount>theme-selva</auto-mount>
 
-    <version name="2.4.0a1" url="http://openacs.org/repository/download/apm/theme-selva-2.4.0a1.apm">
+    <version name="2.4.0b1" url="http://openacs.org/repository/download/apm/theme-selva-2.4.0b1.apm">
         <owner url="http:/www.weg.ee.usyd.edu.au">Rafael Calvo</owner>
-        <release-date>2008-03-22</release-date>
+        <release-date>2008-06-08</release-date>
         <vendor url="http://www.weg.usyd.edu.au"></vendor>
         <maturity>0</maturity>
 
-        <provides url="theme-selva" version="2.4.0a1"/>
-        <requires url="dotlrn" version="2.4.0a1"/>
+        <provides url="theme-selva" version="2.4.0b1"/>
+        <requires url="dotlrn" version="2.4.0b1"/>
 
         <callbacks>
             <callback type="after-upgrade"  proc="theme_selva::apm::after_upgrade"/>
