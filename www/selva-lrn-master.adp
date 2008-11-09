@@ -6,7 +6,7 @@
   <if @doc_type@ not nil><property name="doc_type">@doc_type;noquote@</property></if>
  
 
-<if @youarehere@ not nil><div id="youarehere">@youarehere;noquote@</div><br /></if> 
+<if @youarehere@ not nil><div id="youarehere">@youarehere;noquote@</div><br></if> 
 <else><div id="youarehere"></div></else>
 
 <div id="portal-navigation">
