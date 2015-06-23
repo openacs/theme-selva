@@ -34,18 +34,35 @@
     </if>
 
 
-<div id="wrapper"><!-- old page-body -->   
-<!-- header (contains logo) --><div id="header">
-	<if @title@ not nil>		<a href="/" alt="@title;noquote@">
-	<img src="/Selva/images/logo.gif" alt="@title;noquote@" border=0></a></div>
+<div id="wrapper"><!-- old page-body --> 
+  
+<!-- header (contains logo) -->
+<div id="header">
+	<if @title@ not nil>
+		<a href="/" alt="@title;noquote@">
+	<img src="/Selva/images/logo.gif" alt="@title;noquote@" border="0"></a>
+</div>
 
     <h1 class="page-title">@title;noquote@</h1>
   </if>
   <else>
-  <div id="header">	<a href="/">
-	<img src="/Selva/images/logo.gif" border=0></a>	</div></else>
+  <div id="header">
+	<a href="/">
+	<img src="/Selva/images/logo.gif" border="0"></a>
+	</div></else>
   
-<!-- Breadcrumbs and status (contains name, members online,logout)--><div id="breadcrumbs">You are here > .LRN > MySpace	<div id="status">	Dorian Peters | 		<a href="">2 members online</a> | 	<a href="">log out</a>	</div></div>
+
+<!-- Breadcrumbs and status (contains name, members online,logout)-->
+<div id="breadcrumbs">
+You are here > .LRN > MySpace
+
+	<div id="status">
+	Dorian Peters | 	
+	<a href="">2 members online</a> | 
+	<a href="">log out</a>
+	</div>
+
+</div>
 
     <slave>
 

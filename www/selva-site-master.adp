@@ -19,7 +19,7 @@
 <!-- Header -->
 <div id="site-header">
 <if @is_logo_url@ not nil> 
-  <img src="@is_logo_url;noquote@" alt="#theme-selva.website_logo#">
+  <img src="@is_logo_url@" alt="#theme-selva.website_logo#">
 </if>
 
 <div id="breadcrumbs">
