@@ -101,7 +101,7 @@ namespace eval selva {
             incr which_tab
 	}
 
-	if { [exists_and_not_null community_id] } {
+	if { ([info exists community_id] && $community_id ne "") } {
             set type [dotlrn_community::get_community_type_from_community_id $community_id]
             if { $type eq "dotlrn_community" || $type eq "dotlrn_pers_community" } {
                  set community_message_key "#dotlrn.subcommunities_pretty_name#"
@@ -146,7 +146,7 @@ namespace eval selva {
 	    ns_log Debug "NAME:: $name"
 	    if { $which_tab == $which_tab_selected } {
 		append navbar "\n<li class=\"active\"><a href=\"$url\" title=\"[_ theme-selva.goto_tab_name]\">"
-		#if {$picture != "null" } { append navbar "<img src=\"$picture\" alt=\"$picture\">" }
+		#if {$picture ne "null" } { append navbar "<img src=\"$picture\" alt=\"$picture\">" }
 		append navbar "[lang::util::localize $name]</a></li>"
 	    } else {
 		append navbar "\n<li><a href=\"$url\" title=\"[_ theme-selva.goto_tab_name]\">[lang::util::localize $name]</a></li>"
@@ -251,7 +251,7 @@ namespace eval selva {
 	set subnavbar "<ul>\n"
 	
 	db_foreach list_page_nums_select {} {
-	    if {[string equal $page_num $sort_key]} {
+	    if {$page_num eq $sort_key} {
 		append subnavbar "\n<li class=\"active\"><a href=\"$link?page_num=$sort_key\" title=\"[_ theme-selva.goto_portal_page_pretty_name]\">$pretty_name</a> </li>"
 	    } else {
 		append subnavbar "\n<li><a href=\"$link?page_num=$sort_key\" title=\"[_ theme-selva.goto_portal_page_pretty_name]\">$pretty_name</a> </li>"

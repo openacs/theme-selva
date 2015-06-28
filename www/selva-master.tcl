@@ -5,15 +5,15 @@
 # this should also allow for pages to call the dotlrn template (i.e. tabs) off
 # maybe by passing a propery in a page
 
-if {![exists_and_not_null displayed_object_id]} {
+if {(![info exists displayed_object_id] || $displayed_object_id eq "")} {
     set displayed_object_id ""
 }
 
-if {[exists_and_not_null title]} {
+if {([info exists title] && $title ne "")} {
     set doc(title) $title
 }
 
-if {![exists_and_not_null context]} {
+if {(![info exists context] || $context eq "")} {
     set context ""
 }
 

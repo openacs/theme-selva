@@ -14,7 +14,7 @@ if { [template::util::is_nil doc_type] } {
     set doc_type {<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">}
 }
 
-if { [template::util::is_nil title] } { 
+if { ![info exists title] } { 
     set title [ad_conn instance_name]  
 }
 
@@ -53,7 +53,7 @@ multirow append attribute onload [join $onload " "]
 
 # Additional Body Attributes
 
-if {[exists_and_not_null body_attributes]} {
+if {([info exists body_attributes] && $body_attributes ne "")} {
     foreach body_attribute $body_attributes {
 	multirow append attribute [lindex $body_attribute 0] [lindex $body_attribute 1]
     }
@@ -82,7 +82,7 @@ set openacs_version [ad_acs_version]
 # Toggle translator mode link
 
 set acs_lang_url [apm_package_url_from_key "acs-lang"]
-if { [empty_string_p $acs_lang_url] } {
+if { $acs_lang_url eq "" } {
     set lang_admin_p 0
 } else {
     set lang_admin_p [permission::permission_p \
