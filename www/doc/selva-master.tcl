@@ -34,7 +34,7 @@
 # at the top of the page, the title of the pages, the fonts of the portlets, etc.
 #
 # WARNING: All current portlet themes (table, deco, nada, etc) depend on some
-# of the CSS defined below. Be carefull when you edit the CSS below, 
+# of the CSS defined below. Be careful when you edit the CSS below,
 # and check how themes use it.
 #
 #
