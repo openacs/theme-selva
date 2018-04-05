@@ -181,7 +181,7 @@ if {$community_id ne ""} {
     }
   
     # DRB: default logo for dotlrn is a JPEG provided by Collaboraid.  This can
-    # be replaced by custom gifs if prefered (as is done by SloanSpace)
+    # be replaced by custom gifs if preferred (as is done by SloanSpace)
 
     if { [file exists "$header_img_file-$scope_name.jpg"] } {
         set header_img_url "$header_img_url-$scope_name.jpg"
@@ -248,7 +248,7 @@ if {$community_id ne ""} {
     # under /dotlrn
 
     # DRB: default logo for dotlrn is a JPEG provided by Collaboraid.  This can
-    # be replaced by custom gifs if prefered (as is done by SloanSpace)
+    # be replaced by custom gifs if preferred (as is done by SloanSpace)
 
     if { [file exists "$header_img_file-$scope_name.jpg"] } {
         set header_img_url "$header_img_url-$scope_name.jpg"
