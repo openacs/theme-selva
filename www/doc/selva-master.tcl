@@ -15,16 +15,16 @@
 #
 # /www/dotlrn-master.tcl
 #
-# This is the "default-master" template for dotlrn sites. 
+# This is the "default-master" template for dotlrn sites.
 #
 # Instructions:
 #
-# 1. Put this file and it's .adp file into the server's /www directory.
+# 1. Put this file and its .adp file into the server's /www directory.
 # That's the one with the "default-master" tcl and adp files. You don't
 # have to edit or remove the "default-master" files, since they will be
 # ignored by the next step.
-# 
-# 2. Change the "Main Site"'s "DefaultMaster" parameter 
+#
+# 2. Change the "Main Site"'s "DefaultMaster" parameter
 # from "/www/default-master" to "/www/dotlrn-master"
 # at http://yoursite.com/admin/site-map
 #
@@ -42,10 +42,9 @@
 #
 # $Id$
 
-set user_id [ad_conn user_id] 
+set user_id [ad_conn user_id]
 set community_id [dotlrn_community::get_community_id]
 set dotlrn_url [dotlrn::get_url]
-
 
 #Scope Related graphics/css parameters
 # Set everything for user level scope as default then modify it later as we refine the scope.
@@ -68,20 +67,17 @@ set header_img_alt_text "Header Logo"
 set extra_spaces "<img src=\"/resources/dotlrn/spacer.gif\" border=0 width=15>"
 set td_align "align=\"center\" valign=\"top\""
 
-
 if {$community_id ne ""} {
     set have_comm_id_p 1
 } else {
     set have_comm_id_p 0
 }
 
-
-
 # navbar vars
 set show_navbar_p 1
 if {([info exists no_navbar_p] && $no_navbar_p ne "") && $no_navbar_p} {
     set show_navbar_p 0
-} 
+}
 
 if {![info exists link_all]} {
     set link_all 0
@@ -98,7 +94,7 @@ if {![info exists link_control_panel]} {
 }
 
 if { [ad_conn package_key] ne [dotlrn::package_key] } {
-    # Peter M: We are in a package (an application) that may or may not be under a dotlrn instance 
+    # Peter M: We are in a package (an application) that may or may not be under a dotlrn instance
     # (i.e. in a news instance of a class)
     # and we want all links in the navbar to be active so the user can return easily to the class homepage
     # or to the My Space page
@@ -106,19 +102,18 @@ if { [ad_conn package_key] ne [dotlrn::package_key] } {
 }
 
 if {$have_comm_id_p} {
-    # in a community or just under one in a mounted package like /calendar 
+    # in a community or just under one in a mounted package like /calendar
     # get this comm's info
     set control_panel_text "Administer"
 
-    set text [dotlrn_community::get_community_header_name $community_id] 
+    set text [dotlrn_community::get_community_header_name $community_id]
     set link [dotlrn_community::get_community_url $community_id]
     set admin_p [dotlrn::user_can_admin_community_p -user_id $user_id -community_id $community_id]
 
    if { $show_navbar_p } {
          set make_navbar_p 1
     } else {
-	set make_navbar_p 0
-
+        set make_navbar_p 0
     }
 } elseif {[parameter::get -parameter community_type_level_p] == 1} {
     set control_panel_text "Administer"
@@ -129,11 +124,11 @@ if {$have_comm_id_p} {
     # in a community type
     set text \
             [dotlrn_community::get_community_type_name [dotlrn_community::get_community_type]]
-    
+
    if {$show_navbar_p} {
-	set make_navbar_p 1
+        set make_navbar_p 1
     } else {
-	set make_navbar_p 0
+        set make_navbar_p 0
     }
 
 } else {
@@ -172,40 +167,40 @@ set community_id [dotlrn_community::get_community_id]
 set control_panel_text [_ "dotlrn.control_panel"]
 
 if {$community_id ne ""} {
-    # in a community or just under one in a mounted package like /calendar 
+    # in a community or just under one in a mounted package like /calendar
     set comm_type [dotlrn_community::get_community_type_from_community_id $community_id]
     set control_panel_text [_ acs-subsite.Admin]
 
     if {[dotlrn_community::subcommunity_p -community_id $community_id]} {
-	#The colors for a subgroup are set by the parent group with a few overwritten.
-	set comm_type [dotlrn_community::get_community_type_from_community_id [dotlrn_community::get_parent_id -community_id $community_id]]
+        #The colors for a subgroup are set by the parent group with a few overwritten.
+        set comm_type [dotlrn_community::get_community_type_from_community_id [dotlrn_community::get_parent_id -community_id $community_id]]
     }
 
     if {$comm_type eq "dotlrn_club"} {
-	    #community colors
-	    set scope_name "comm"
-	    set scope_main_color "#CC6633"
-	    set scope_header_color "#F48F5C"
-	    set scope_z_dark "#FFDDB0"
-	    set scope_z_light "#FFF2E2"
-	    set scope_light_border "#E7B59C"
-	if {[dotlrn_community::subcommunity_p -community_id $community_id]} {
-	    set scope_z_dark "#FFDDB0"
-	    set scope_z_light "#FFF2E2"
-	}
+        #community colors
+        set scope_name "comm"
+        set scope_main_color "#CC6633"
+        set scope_header_color "#F48F5C"
+        set scope_z_dark "#FFDDB0"
+        set scope_z_light "#FFF2E2"
+        set scope_light_border "#E7B59C"
+        if {[dotlrn_community::subcommunity_p -community_id $community_id]} {
+            set scope_z_dark "#FFDDB0"
+            set scope_z_light "#FFF2E2"
+        }
     } else {
-	set scope_name "course"
-	set scope_main_color "#6C9A83"
-	set scope_header_color $scope_main_color
-	set scope_z_dark "#CDDED5"
-	set scope_z_light "#E6EEEA"
-	set scope_light_border "#D0DFD9"
-	if {[dotlrn_community::subcommunity_p -community_id $community_id]} {
-	    set scope_z_dark "#D0DFD9"
-	    set scope_z_light "#ECF3F0"
-	}
+        set scope_name "course"
+        set scope_main_color "#6C9A83"
+        set scope_header_color $scope_main_color
+        set scope_z_dark "#CDDED5"
+        set scope_z_light "#E6EEEA"
+        set scope_light_border "#D0DFD9"
+        if {[dotlrn_community::subcommunity_p -community_id $community_id]} {
+            set scope_z_dark "#D0DFD9"
+            set scope_z_light "#ECF3F0"
+        }
     }
-  
+
     # DRB: default logo for dotlrn is a JPEG provided by Collaboraid.  This can
     # be replaced by custom gifs if preferred (as is done by SloanSpace)
 
@@ -214,7 +209,7 @@ if {$community_id ne ""} {
     } elseif { [file exists "$header_img_file-$scope_name.gif"] } {
         set header_img_url "$header_img_url-$scope_name.gif"
     }
-  
+
    # set header_img_url "$header_img_url-$scope_name.gif"
 
    # font hack
@@ -224,7 +219,7 @@ if {$community_id ne ""} {
     ]
 
     if {$community_header_font ne ""} {
-	set header_font "$community_header_font,$header_font"
+        set header_font "$community_header_font,$header_font"
     }
 
 
@@ -238,7 +233,7 @@ if {$community_id ne ""} {
         -attribute_name header_font_color
     ]
 
-    # logo hack 
+    # logo hack
     set header_logo_item_id [dotlrn_community::get_attribute \
         -community_id $community_id \
         -attribute_name header_logo_item_id
@@ -246,11 +241,11 @@ if {$community_id ne ""} {
 
     if {$header_logo_item_id ne ""} {
 
-	# Need filename
-        set header_img_url "[dotlrn_community::get_community_url $community_id]/file-storage/download/?version_id=$header_logo_item_id" 
+    # Need filename
+        set header_img_url "[dotlrn_community::get_community_url $community_id]/file-storage/download/?version_id=$header_logo_item_id"
     }
-	
-   
+
+
     set header_logo_alt_text [dotlrn_community::get_attribute \
         -community_id $community_id \
         -attribute_name header_logo_alt_text
@@ -287,17 +282,17 @@ if {$community_id ne ""} {
 
 if { $make_navbar_p } {
     if {$link_control_panel} {
-	set link_control_panel 1
+        set link_control_panel 1
     } else {
-	set link_control_panel 0
+        set link_control_panel 0
     }
-    set extra_spaces "<img src=\"/resources/dotlrn/spacer.gif\" border=0 width=15>"    
+    set extra_spaces "<img src=\"/resources/dotlrn/spacer.gif\" border=0 width=15>"
     set navbar [dotlrn::portal_navbar \
         -user_id $user_id \
         -link_control_panel $link_control_panel \
         -control_panel_text $control_panel_text \
-	-pre_html "$extra_spaces" \
-	-post_html $extra_spaces \
+        -pre_html "$extra_spaces" \
+        -post_html $extra_spaces \
         -link_all $link_all
     ]
 } else {
@@ -333,7 +328,7 @@ if { ![template::util::is_nil focus] } {
             }
           </script>
         "
-        
+
         template::multirow append \
                 attribute onload "javascript:acs_focus('${form_name}', '${element_name}')"
     }
@@ -371,4 +366,3 @@ set toggle_translator_mode_url [export_vars -base "${acs_lang_url}admin/translat
 
 # Curriculum bar
 set curriculum_bar_p [llength [site_node::get_children -all -filters { package_key "curriculum" } -node_id $community_id]]
-
