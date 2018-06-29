@@ -22,7 +22,7 @@ ad_library {
 
     @author Jeremy Monnet (jmonnet@gmail.com)
     @creation-date June 2005
-    @version $Id$
+    @cvs-id $Id$
 
 }
 
