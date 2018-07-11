@@ -28,9 +28,9 @@
 # from "/www/default-master" to "/www/dotlrn-master"
 # at http://yoursite.com/admin/site-map
 #
-# This tells OpenACS to to use these files instead of the "default-master"
+# This tells OpenACS to use these files instead of the "default-master"
 #
-# 3. Edit these files to chage the look of the site including the banner
+# 3. Edit these files to change the look of the site including the banner
 # at the top of the page, the title of the pages, the fonts of the portlets, etc.
 #
 # WARNING: All current portlet themes (table, deco, nada, etc) depend on some
