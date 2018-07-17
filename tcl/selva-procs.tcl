@@ -101,7 +101,7 @@ namespace eval selva {
             incr which_tab
         }
 
-        if { ([info exists community_id] && $community_id ne "") } {
+        if { [info exists community_id] && $community_id ne "" } {
             set type [dotlrn_community::get_community_type_from_community_id $community_id]
             if { $type eq "dotlrn_community" || $type eq "dotlrn_pers_community" } {
                 set community_message_key "#dotlrn.subcommunities_pretty_name#"
