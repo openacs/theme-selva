@@ -182,8 +182,13 @@ namespace eval selva {
             # else on the site
             set link "[dotlrn::get_url]/"
 
-            if {[dotlrn::user_p -user_id $user_id] &&
-                [ad_get_client_property dotlrn home_tab_selected_p] } {
+            set selected_p [ad_get_client_property dotlrn home_tab_selected_p]
+
+            if { $selected_p eq "" } {
+                set selected_p false
+            }
+
+            if {[dotlrn::user_p -user_id $user_id] && $selected_p} {
                 # this user is a dotlrn user, we've selected the home tab,
                 # show their personal portal subnavbar, including the control panel link
                 set portal_id [dotlrn::get_portal_id -user_id $user_id]
