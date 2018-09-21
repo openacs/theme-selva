@@ -1,9 +1,9 @@
 # $Id$
 
-# RAC: If dotlrn is not installed selva-master uses selva-site-master, 
+# RAC: If dotlrn is not installed selva-master uses selva-site-master,
 # otherwise uses selva-dotlrn-master
 # this should also allow for pages to call the dotlrn template (i.e. tabs) off
-# maybe by passing a propery in a page
+# maybe by passing a property in a page
 
 if {(![info exists displayed_object_id] || $displayed_object_id eq "")} {
     set displayed_object_id ""
